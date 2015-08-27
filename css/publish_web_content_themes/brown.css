@@ -1,0 +1,12 @@
+#header, #menuSidebar {
+  background-color: #D66B03;
+}
+
+#header .banner {
+  background-color: #D66B03;
+  height: 115px;
+}     
+
+#rightSidebar .module h4 {
+  background-color: #D66B03;
+}

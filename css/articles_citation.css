@@ -1,0 +1,58 @@
+div.art, div.cited{
+	padding:15px;    
+}
+
+table td.dimmed {
+	background-color:#FFC4C4;
+	border-radius:15px;
+}
+
+div span.title{
+	text-decoration:underline;
+	font-family:Verdana, Geneva, sans-serif;    
+}
+
+div span.note{
+	font-size:10px;
+	font-style:italic;
+	color:#DA7876;
+}
+
+table.art_tbl{
+	margin-top:20px;
+	border-collapse: collapse;
+    border: 1px solid black;
+	
+}
+
+table.art_tbl th{
+	border: 1px solid black;
+	padding:5px;
+	background-color:#FFC;
+	text-align:center;
+}
+
+table.art_tbl td{
+	border: 1px solid black;
+	padding:5px;
+	background-color:#FFFFF0;
+}
+
+table.art_tbl td.year{
+	text-align:center;
+}
+
+table.art_tbl td.tot{
+	text-align:right;
+}
+
+table.art_tbl td.totText{
+	font-weight:bold;
+	text-align:center;
+}
+
+table.art_tbl td.totalArt{
+	background-color:#FFFF80;
+	text-align:right;
+	font-weight:bold;
+}

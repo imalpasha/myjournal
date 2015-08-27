@@ -1,0 +1,319 @@
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  /* color: black; */
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+label {
+  width: 10em;
+  float: left;
+}
+
+label.gender {
+  width: 0;
+  float: none;
+}
+
+label.error {
+  width: 100%;
+  float: left;
+  color: red;
+  padding-left: .5em;
+  vertical-align: top;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="password"],
+textarea,
+select {
+  padding: 3px 4px;
+  margin: 0;
+  border: 1px solid #999;
+}
+
+textarea.error,
+input.error {
+  border: 1px solid red;
+}
+
+#search {
+  padding: 5px;
+  text-align: right;
+}
+
+#menuSidebar {
+  padding-top: 30px;
+  margin-right: 15px;
+  height: 500px;
+}
+
+#menuSidebar a {
+  color: black;
+}
+
+#menuSidebar a:hover {
+  color: #333;
+}
+
+#menuSidebar .menu, #menuSidebar .links {
+  padding: 0 20px;
+}
+
+#menuSidebar li {
+  border-bottom: 1px dotted black;
+  margin-bottom: 5px;
+}
+
+#menuSidebar .links {
+  margin-top: 30px;
+}
+
+#menuSidebar .links h3 {
+  border-bottom: 2px groove #c3c3c3;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+#footerNotice {
+  line-height: normal;
+  font-size: 80%;
+}
+
+#footer .footerLine {
+  margin: 4px auto;
+  border-top: 2px groove #c3c3c3;
+}
+
+/*** Content ***/
+#content {
+  padding: 20px 0;
+  margin-right: -30px;
+}
+
+#content a {
+  text-decoration: underline;
+}
+
+#content ul {
+  margin-left: 10px;
+}
+
+#content li {
+  list-style-type: disc;
+  margin-left: 7px;
+}
+
+#content .info {
+  margin-top: 20px;
+}
+
+#content h2 {
+  font-size: 13pt;
+  margin-bottom: 15px;
+}
+
+#content p {
+  text-align: justify;
+  line-height: 1.5;
+}
+
+#content div.updateNotice {
+  margin-top: 20px;
+}
+
+#content .home .cover {
+  float: left;
+  width: 140px;
+  height: 180px;
+}
+
+#content .home .text {
+  padding-left: 10px;
+  width: 330px;
+  display: inline;
+  float: left;
+}
+
+#content .home .info dd {
+  clear: left;
+  display: inline;
+  float: left;
+  width: 80px;
+}
+
+#content .home .info dt {
+  margin-left: 80px;
+}
+
+#content .home .abstract {
+  text-align: justify;
+  margin-top: 20px;
+}
+
+/*** Articles/Search result list***/
+#content .articleList,
+#searchResult {
+  font-size: 12px;
+}
+
+
+#content .articleList .articleRow,
+#searchResult .searchResultRow {
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #999;
+}
+
+#content .articleList .articleRow a,
+#searchResult .searchResultRow a {
+  text-decoration: underline;
+}
+
+#content .articleList h3,
+#searchResult h3 {
+  margin-bottom: 30px;
+}
+  
+#content .articleList h4,
+#searchResult h4.title {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+#content .articleList .abstract,
+#searchResult .abstract {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+#content .articleList .label, #searchResult .label {
+  font-weight: bold;
+}
+
+#content .articleList .highlight, #searchResult .highlight {
+  background-color: #fbb;
+  padding: 1px 5px;
+}
+
+#content .issueList a {
+  text-decoration: underline;
+}
+
+/*** Right sidebar ***/
+#rightSidebar {
+  margin-top: 5px;
+  margin-left: 40px;
+}
+
+#rightSidebar .module {
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+}
+
+#rightSidebar .module h4 {
+  text-align: center;
+  padding: 6px 0 6px;
+  margin: 0 0 5px 0;
+}
+
+#rightSidebar ul, ol {
+  margin: 0 0 15px;
+  padding: 0;
+}
+
+#rightSidebar li {
+  font-size: 11px;
+  margin: 0 auto;
+  text-align: center;
+  list-style-type: none;
+}
+
+#rightSidebar li a {
+  text-decoration: underline;
+}
+
+#rightSidebar td, th {
+    font-size: 11px;
+}
+
+#rightSidebar .indexationWrapper {
+  padding: 0 4px 5px;
+}
+
+/**** Registration ****/
+#registrationForm {
+  font-family: Arial, helvetica;
+  font-size: 10px;
+}
+
+#registrationForm table {
+}
+
+#registrationForm table th, #registrationForm table td {
+  padding: 2px;
+}
+
+#registrationForm table th {
+  width: 160px;
+  text-align: left;
+  padding-top: 4px;
+  vertical-align: top;
+}
+
+#registrationForm table td {
+  /* border: 1px solid #ddd; */
+  margin: 0;
+}
+
+#registrationForm input {
+  margin-bottom: 2px;
+}
+
+#registrationForm input[type="text"],
+#registrationForm input[type="password"],
+#registrationForm textarea {
+  width: 240px;
+}
+
+#registrationForm select {
+  width: 250px;
+}
+
+#registrationForm textarea {
+  height: 120px;
+}
+
+#registrationForm .subform {
+  border: 1px solid #999;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#author_form #author_list,
+#manuscripts_form .MultiFile-label {
+  font-size: 9pt;
+}
+
+#msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Search */
+#searchResult div.msg {
+  border-bottom: 1px solid #999;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}

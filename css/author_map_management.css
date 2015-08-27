@@ -1,0 +1,108 @@
+div.authorMap .searchBar {
+  margin-top: 10px;
+}
+
+div.authorMap .resultList {
+  margin-top: 20px;
+}
+
+div.authorMap table.resultList {
+  width: 100%;
+}
+
+div.authorMap table.resultList tr td,
+div.authorMap table.resultList tr th {
+  vertical-align: top;
+}
+
+div.authorMap table.resultList tr th {
+  background-color: #ccc;
+  padding: 2px 4px;
+}
+
+div.authorMap table.resultList tr.even td, tr.odd td {
+  padding: 1px 2px;
+}
+
+div.authorMap table.resultList tr th.groupId {
+  width: 60px;
+}
+
+div.authorMap table.resultList tr th.affiliation {
+  width: 180px;
+}
+
+div.authorMap table.resultList tr th.action {
+  width: 40px;
+}
+
+div.authorMap table.resultList tr th.detail {
+  text-align: center;
+  width: 40px;
+}
+
+div.authorMap table.resultList tr.even td {
+  background-color: #eee;
+}
+
+div.authorMap table.resultList tr.even td, tr.odd td, tr th {
+  padding: 1px 2px;
+}
+
+div.authorMap table.resultList td ul.separatedItem {
+  margin: 0;
+  padding: 0;
+}
+
+div.authorMap table.resultList td ul.separatedItem li {
+  float: left;
+  list-style: none;
+  border: 1px solid #f44;
+  background-color: #fdd;
+  padding: 1px 6px;
+  margin: 1px;
+  border-radius: 10px;
+}
+
+div.authorMap table.resultList td ul.separatedItem li.more {
+  background: none;
+  border-color: transparent;
+}
+
+div.authorMap table.resultList tr td.rightPadded {
+  text-align: right;
+  padding-right: 10px;
+}
+
+div.authorMap table.resultList tr td.centered {
+  text-align: center;
+}
+
+div.authorMap table.resultList tr td.action {
+  padding-left: 2px;
+  padding-right: 2px;
+  width: 30px;
+  text-align: center;
+}
+
+div.authorMap table.resultList tr td ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.authorMap table.resultList tr td li {
+  list-style: none;
+  float: left;
+  border: 1px solid #f22;
+  background-color: #fee;
+  padding: 1px 6px;
+  margin: 1px;
+  border-radius: 10px;
+}
+
+/** colorbox */
+div#cboxContent {
+  border: 10px solid #999;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 25px;
+}

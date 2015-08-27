@@ -1,0 +1,237 @@
+<table border="0" valign="top">
+<?php 
+// site-wide
+$short_name = "site-wide";
+$nav_role_id = getRoleIdByShortName($short_name);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id'])) : ?>
+  <?php $navigation_count++; ?>
+  <tr valign="top">
+    <td>
+      <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Administrator</strong></font></td>
+        </tr>
+        <tr>
+          <td height="50" align="left" bgcolor="#f1f0ee" background="../images/bg-list3.png" style="background-repeat:repeat-x">
+            <table width="200"  border="0" cellpadding="3" cellspacing="1" bordercolor="#CCCCCC">
+              <tr>
+                <td align="left" class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/user.php">User and Group Management</a></td>
+              </tr>
+              <tr>
+                <td align="left" class="bg" style="margin-left:0px;">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/adminpublish.php">Approve for UM Web</a></td>
+              </tr>
+              <tr>
+                <td align="left" class="bg" style="margin-left:0px;">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/articles_page1.php">Check References</a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/journal-add.php">Journal Management</a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/journal-editor-add.php">Editor Management</a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/article-check.php">Creator Report</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<?php endif ?>
+<?php
+// editor
+$short_name = "editor";
+$nav_role_id = getRoleIdByShortName($short_name);
+
+// Hard coded global editors
+$editors = array(7, 880, 4326, 89, 4440);
+$is_global_editor = in_array($_SESSION['user_id'], $editors);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id']) || $is_global_editor) : ?>
+  <?php if ( isEditorExist($_SESSION['journal_id'],$_SESSION['user_id']) || $is_global_editor) : ?>
+    <?php $navigation_count++ ?>
+    <tr>
+      <td>
+        <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Editor</strong></font></td>
+          </tr>
+          <tr>
+            <td height="50" align="left" bgcolor="#f1f0ee" background="images/bg-list3.png" style="background-repeat:repeat-x">
+              <table width="200"  border="0" cellpadding="3" cellspacing="1">
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/journal-select.php">Summary</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/journal-edit.php">Edit Journal </a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/indexation-add.php">Indexation </a></td>
+                </tr>       
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/manual-article-upload.php">Manual Article Upload</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/editor-view-article-list.php">Article Management </a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/editor-reviewer-add.php">Reviewer Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/eg-edit.php">Editorial Group Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/sr-edit.php">Submission Rules Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/volume-add.php">Volumes &amp; Issues Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/reviewer-profile.php">Editor Profile</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/content.php">Web Content</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <?php endif ?>
+<?php endif ?>
+<?php
+// reviewer
+$short_name = "reviewer";
+$nav_role_id = getRoleIdByShortName($short_name);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id'])) : ?>
+  <?php if ( isReviewerExist($_SESSION['journal_id'],$_SESSION['user_id'])) : ?>
+    <?php $navigation_count++ ?>
+    <tr>
+      <td>
+        <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Reviewer</strong></font></td>
+          </tr>
+          <tr>
+            <td height="50" align="left" bgcolor="#f1f0ee" background="images/bg-list3.png" style="background-repeat:repeat-x">
+              <table width="200"  border="0" cellpadding="3" cellspacing="1" bordercolor="#CCCCCC">
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/reviewer-list-article.php">Review Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/reviewer-profile.php">Reviewer Profile</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+      </table>
+    </td>
+  </tr>
+  <?php endif ?>
+<?php endif ?>
+<?php
+$short_name = "editorial-board-member";
+$nav_role_id = getRoleIdByShortName($short_name);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id'])) : ?>
+  <?php if ( isEditorialExist($_SESSION['journal_id'],$_SESSION['user_id'])) : ?>
+    <?php $navigation_count++ ?>
+    <tr>
+      <td>
+        <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Editorial Board Member</strong></font></td>
+          </tr>
+          <tr>
+            <td height="50" align="left" bgcolor="#f1f0ee" background="images/bg-list3.png" style="background-repeat:repeat-x">
+              <table width="200"  border="0" cellpadding="3" cellspacing="1" bordercolor="#CCCCCC">
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/editorial-list-article.php">Editorial Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/editorial-profile.php">Board Member Profile</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <?php endif ?>
+<?php endif ?>
+<?php
+$short_name = "editor-in-chief";
+$nav_role_id = getRoleIdByShortName($short_name);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id'])) : ?>
+  <?php if ( isEditorInChiefExist($_SESSION['journal_id'],$_SESSION['user_id'])) : ?>
+    <?php $navigation_count++; ?>
+    <tr>
+      <td>
+        <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Editorial In Chief</strong></font></td>
+          </tr>
+          <tr>
+            <td height="50" align="left" bgcolor="#f1f0ee" background="images/bg-list3.png" style="background-repeat:repeat-x">
+              <table width="200"  border="0" cellpadding="3" cellspacing="1" bordercolor="#CCCCCC">
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/chief-list-article.php">Chief Management</a></td>
+                </tr>
+                <tr>
+                  <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/chief-profile.php">Chief Profile</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <?php endif ?>
+<?php endif ?>
+<?php
+// author
+$short_name = "author";
+$nav_role_id = getRoleIdByShortName($short_name);
+?>
+<?php if ( isUserExistInRole($nav_role_id,$_SESSION['user_id'])) : ?>
+  <?php $navigation_count++; ?>
+  <tr>
+    <td>
+      <table width="217" border="0" align="left" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="30" background="images/tajukkiri.jpg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#FFFFFF"><strong>Author</strong></font></td>
+        </tr>
+        <tr>
+          <td height="50" align="left" bgcolor="#f1f0ee" background="images/bg-list3.png" style="background-repeat:repeat-x">
+            <table width="200"  border="0" cellpadding="3" cellspacing="1" bordercolor="#CCCCCC">
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/author-article-add.php">Add Article </a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/coauthor-add.php">Add Coauthors</a></td>
+              </tr>      
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/attach-add.php">Add Files</a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/confirm-add.php">Confirm Submission</a></td>
+              </tr>
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/author-view-add.php">Article View</a></td>
+              </tr>      
+              <tr>
+                <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/reviewer-profile.php">Author Profile</a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+<?php endif ?>
+</table>

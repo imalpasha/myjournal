@@ -1,0 +1,188 @@
+h2.contentTitle {
+  font-size: 16px;
+}
+
+h3.issueDesc {
+  font-size: 12px;
+}
+
+/* Article View */
+div.articleInfo {
+  font-size: 11px;
+  padding: 5px 10px 0;
+}
+
+div.articleInfo div {
+  margin-bottom: 0.3em;
+}
+
+div.articleInfo h2.title {
+  font-size: 18px;
+  margin-bottom: 0.2em;
+}
+
+div.articleInfo div.abstract {
+  margin-top: 1.5em;
+  margin-bottom: 1.4em;
+  text-align: justify;
+}
+
+div.articleInfo div.fulltextAnchor {
+  margin-top: 5px;
+  border-top: 1px solid #ddd;
+  padding-top: 5px;
+}
+
+div.articleInfo #titleAlt {
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+div.articleInfo a#languageToggler {
+}
+
+div.articleInfo a#languageToggler img {
+  border: 0;
+  vertical-align: middle;
+  margin: 0 3px 0 0;
+}
+
+div.articleInfo a#languageToggler span {
+  vertical-align: middle;
+}
+
+div.articleInfo .altText {
+  font-style: italic;
+  color: #4C3801;
+}
+
+/* Issue View */
+div.articleRow {
+  border-top: 1px solid #999;
+  /** padding-left: 10px; */
+  padding-left: 25px;
+  padding-right: 15px;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+div.articleRow div {
+  margin-bottom: 3px;
+}
+
+div.articleRow div.count {
+  float: left;
+  clear: left;
+  margin-left: -25px;
+}
+
+div.articleRow div.authors {
+  /** margin-top: 10px; */
+  font-size: 10px;
+}
+
+div.articleRow div.title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+div.articleRow div.misc {
+  font-size: 10px;
+  font-style: italic;
+}
+
+div.articleRow div.abstract {
+  font-size: 12px;
+  text-align: justify;
+}
+
+div.articleRow span.highlight {
+  background-color: yellow;
+  padding: 2px;
+}
+
+/* Default Journal Cover */
+div.journalCoverBig {
+  width: 110px;
+  height: 140px;
+  margin: 0;
+  padding: 0;
+  border: 5px solid #D77;
+  background-color: #E99;
+}
+
+div.journalCoverBig div.text {
+  margin: 30px auto;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 11px;
+  font-family: Arial, Helvetica;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+}
+
+div.journalCoverSmall {
+  width: 64px;
+  height: 84px;
+  margin: 0;
+  padding: 0;
+  border: 3px solid #D77;
+  background-color: #E99;
+  text-decoration: none;
+  color: black;
+}
+
+div.journalCoverSmall div.text {
+  margin: 15px auto;
+  padding: 3px;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: Arial, Helvetica;
+  background-color: white;
+}
+
+div.journalCoverBig div.text,
+div.journalCoverSmall div.text,
+div.journalCoverBig div.text a,
+div.journalCoverSmall div.text a {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+/** Left menu */
+div.letterBrowser span.letter {
+	width: 30px;
+}
+
+/** Article list item */
+div.articleRow div.fulltext {
+  margin: 8px 0;
+}
+
+div.articleRow a.download {
+  font-size: 9px;
+  border: 1px solid red;
+  padding: 1px 5px;
+  border-radius: 5px;
+  color: red;
+  background-color: #FFD4D4;
+}
+
+div.articleRow a:hover.download {
+  text-decoration: underline;
+}
+
+div.articleRow a.viewAbstract {
+  text-decoration: underline;
+}
+
+div.articleRow a.viewReferences {
+  text-decoration: underline;
+}
+
+div.articleRow div.abstract div.content {
+  margin-top: 5px;
+}

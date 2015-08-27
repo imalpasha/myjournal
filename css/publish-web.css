@@ -1,0 +1,28 @@
+.sidebar {
+    margin-right: 0;
+    padding-right: 0;
+    border: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+h4.sidebarTitle {
+    text-align: center;
+    padding: 6px 0 6px;
+    margin: 0 0 5px 0;
+}
+
+.sidebar ul, ol {
+    margin: 0 0 15px;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 0 auto;
+    text-align: center;
+    list-style-type: none;
+}
+
+.sidebar td, th {
+    font-size: 11px;
+}

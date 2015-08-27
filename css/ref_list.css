@@ -1,0 +1,225 @@
+pre {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+ overflow: scroll;
+}
+
+div.resultList div.pageToolbar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.resultList div.pageToolbar ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.resultList div.pageToolbar ul li {
+  list-style: none;
+  margin: 0;
+  padding: 2px 4px;
+  border: 1px solid #999;
+  float: left;
+}
+
+div.articleRow div.header {
+  margin-top: 0;
+  margin-bottom: 1px;
+  /* border-top: 1px solid #999; */
+  padding: 0 1px;
+}
+
+div.articleRow div.header h3 {
+  margin-top: 4px;
+  margin-bottom: 3px;
+}
+
+div.articleRow div.header h3 div.rowToggler {
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #999;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+}
+
+div.numberBox {
+  text-align: center;
+  border: 1px solid #9cf;
+  background-color: #9cf;
+  padding: 2px;
+  margin: 4px 2px;
+}
+
+div.articleRow {
+  margin-bottom: 25px;
+}
+
+div.articleRow div.content {
+}
+
+div.articleRow div.content table.ref {
+  border: 1px solid #999;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+div.articleRow div.content table.ref tr th,
+div.articleRow div.content table.ref tr td {
+  border: 1px solid #bbb;
+}
+
+div.articleRow div.content table.ref tr th {
+  background-color: #9cf;
+}
+
+div.articleRow div.content table.ref tr td {
+  margin: 0;
+  border-top: 0;
+  border-bottom: 0;
+  padding: 3px;
+  border-spacing: 0;
+}
+
+div.articleRow div.content table.ref tr.even td {
+  background-color: #def;
+}
+
+div.articleRow div.content table.ref tr.odd td {
+  background-color: #fff;
+}
+
+div.articleRow div.content table.ref tr.highlight {
+  border: 2px solid #f33;
+  background-color: #fcc;
+}
+
+div.articleRow div.content table.ref tr.highlight td {
+  background-color: #fcc;
+}
+
+/* Row Header */
+div.articleRow div.header ul.action,
+div.articleRow div.footer ul.action {
+  margin: 0;
+  padding: 0;
+}
+
+div.articleRow div.header ul.action li,
+div.articleRow div.footer ul.action li {
+  padding: 0;
+  margin: 2px 0;
+  float: left;
+  list-style: none;
+  text-align: center;
+}
+
+/* Row Content */
+div.articleRow div.content ul.action {
+  margin: 0;
+  padding: 0;
+}
+
+div.articleRow div.content ul.action li {
+  padding: 0;
+  margin: 2px 0;
+  list-style: none;
+  text-align: center;
+}
+
+div.articleRow div.content ul.action li img {
+  border: 0;
+}
+
+/** Article Edit form */
+form.articleRef {
+}
+
+form.articleRef tr {
+  vertical-align: top;
+}
+
+form.articleRef th,
+form.articleRef td {
+  text-align: left;
+}
+
+form#articleRef {
+  padding: 10px;
+}
+
+form#articleRef dl {
+  padding: 6px 3px 3px;
+  border: 1px solid #999;
+  margin: 0;
+}
+
+form#articleRef dt {
+  float: left;
+  width: 50px;
+  clear: left;
+  padding-top: 5px;
+}
+
+form#articleRef dd {
+  float: left;
+}
+
+form#articleRef dt,
+form#articleRef dd {
+  margin-bottom: 4px;
+}
+
+form#articleRef input[type=text],
+form#articleRef textarea {
+  border: 1px solid #999;
+  width: 500px;
+}
+
+form#articleRef #submit-label {
+  display: none;
+}
+
+form#articleRef #submit-element {
+  float: none;
+  clear: left;
+  margin: 0;
+  padding: 6px 0 2px;
+}
+
+form#articleRef #submit-element input {
+  margin: 0;
+}
+
+form#articleRef ul.errors {
+  width: 494px;
+  list-style: none;
+  margin: 0;
+  padding: 5px 3px 0;
+  border: 1px solid red;
+  background-color: #FF9999;
+}
+
+form#articleRef ul.errors li {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+#fullReference {
+  padding: 0 10px;
+}
+
+#fullReferenceInner {
+  border: 1px solid #999;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+   height: 300px;
+  overflow: scroll;
+}

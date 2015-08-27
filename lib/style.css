@@ -1,0 +1,562 @@
+/*
+body {
+  margin-top: 0px;
+  background-color: #C8C4BB;
+  background:url(../images/background.jpg)
+}
+*/
+body,td,th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  /*color: #81635C; */
+}
+a:link {
+  /*color: #666;
+  color:#486990;*/
+  color:#004276;
+  font-weight:bold;
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+  color: #006;
+  font-weight:bold;
+}
+a:hover {
+  color:#ca0002;
+  text-decoration: none;
+  /*color: #999; */
+}
+a:active {
+  text-decoration: none;
+  color: #666;
+}
+
+h2 {
+  color: #9f3e3e;
+}
+.fontWhiteBold {
+  font-weight:bold;
+  color:#FFF;
+}
+
+.abstract {
+  font-size: 12px;
+  align: justify;
+}
+.tajukContent {
+  color:#900;
+  font-size:12px;
+  font-weight:bold;
+}
+
+#tooltip{
+position:absolute;
+border:1px solid #ccc;
+background:#333;
+padding:5px;
+color:#fff;
+}
+
+#tooltipList ul
+{
+margin:0px;
+padding:0px;
+}
+
+#tooltipList li
+{
+display:block;
+margin-bottom:20px;
+}
+
+div.tooltipable div.tooltip {
+  display: none;
+}
+
+div.tooltipable:hover div.tooltip {
+  width: 400px;
+  z-index: 999;
+  position: absolute;
+  border: 1px solid #ccc;
+  /* background: #333; */
+  background: rgba(3, 3, 3, 0.75);
+  padding: 5px;
+  color: #fff;
+  display: block;
+  margin-left: 40px;
+}
+
+.customBorder {
+  background-color:#666;
+
+}
+.tableHeader {
+  background-color:#CCC;
+  font-weight:bold;
+}
+.trContent {
+  background-color:#FFF;
+}
+.title {
+  font-weight:bold;
+}
+input,textarea,select {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+/* At-Rules */
+@charset "iso-8859-1";
+/* author: Dr Ram Gopal Raj
+ creation date: 11/15/2000  
+ Body Style */
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", Helvetica, Arial;
+}
+
+A:hover.normlink {
+  color: #FF0000;
+  border-bottom: 1px solid Maroon;
+  text-decoration: none;
+}
+
+.normlink {
+  color: #294E56;
+  border-bottom: 1px dotted Green;
+  text-decoration: none;
+}
+
+b{font-size: 110%;}
+em{color: red;}
+
+#maincontainer{
+width: 1000px; /*Width of main container*/
+margin: 0 auto; /*Center container on page*/
+}
+
+#topsection{
+background: #ffffff;
+height: 270px; /*Height of top section*/
+}
+
+#topsection h1{
+margin: 0;
+padding-top: 15px;
+}
+
+#contentwrapper{
+float: left;
+width: 100%;
+}
+
+#contentcolumn{
+  margin-right: 420px; /*Margin for content column. Should be (RightColumnWidth + LeftColumnWidth)*/
+  padding-right: 3px;
+}
+
+#leftcolumn{
+float: left;
+width: 200px; /*Width of left column in pixel*/
+margin-left: -410px; /*Set margin to -(LeftColumnWidth + RightColumnWidth)*/
+background: #ffffff;
+padding-right: 3px;
+}
+
+#rightcolumn{
+float: left;
+width: 200px; /*Width of right column in pixels*/
+margin-left: -206px; /*Set margin to -RightColumnWidth*/
+background: #ffffff;
+padding-right: 3px;
+}
+
+#footer{
+clear: left;
+width: 100%;
+text-align: center;
+padding: 4px 0;
+}
+
+#footer a{
+color: #483d8b;
+}
+
+.innertube{
+  margin: 0; /*Margins for inner DIV inside each column (to provide padding)*/
+  margin-top: 0;
+}
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.invertedshiftdown{
+padding: 0;
+width: 100%;
+border-top: 5px solid #FF0000; /*Red color theme*/
+background: transparent;
+voice-family: "\"}\"";
+voice-family: inherit;
+}
+
+.invertedshiftdown ul{
+margin:0;
+margin-left: 40px; /*margin between first menu item and left browser edge*/
+padding: 0;
+list-style: none;
+}
+
+.invertedshiftdown li{
+  display: inline;
+  margin: 0 2px 0 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.invertedshiftdown a{
+float: left;
+display: block;
+font: bold 12px Arial;
+color: black;
+text-decoration: none;
+margin: 0 2px 0 0; /*Margin between each menu item*/
+padding: 5px 10px 9px 10px; /*Padding within each menu item*/
+background-color: white; /*Default menu color*/
+
+/*BELOW 4 LINES add rounded bottom corners to each menu item.
+  ONLY WORKS IN FIREFOX AND FUTURE CSS3 CAPABLE BROWSERS
+  REMOVE IF DESIRED*/
+-moz-border-radius-bottomleft: 5px;
+border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-bottom-right-radius: 5px;
+}
+
+.invertedshiftdown a:hover{
+background-color: #FF0000; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+}
+
+.invertedshiftdown .current a{ /** currently selected menu item **/
+background-color: #FF0000; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+}
+
+#topimage {
+  width: 100%;
+  font-size: 14px;
+  margin: 0px;
+  padding: 8px 0px 8px 0px;
+  height: 16px;
+  background-color: #FF0000;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Helvetica', Arial, Verdana;
+  line-height: 18px;
+  border-right: 1px solid #FF0000;
+  border-left: 1px solid #FF0000;
+}
+
+#midcont {
+  width: 100%;
+  margin: 0px;
+  padding: 3px 0px 3px 0px;
+  border-bottom: 3px solid #FF0000;
+  border-left: 1px solid #FF0000;
+  border-right: 1px solid #FF0000;
+}
+
+#midcont ul li {
+  padding: 0px 0px 0 -8px;
+  list-style: url(media/bullet_grey.gif);
+  font-size: 13px;
+  text-indent: 0px;
+}
+
+#midcont ol li {
+  padding: 0px 0px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted Silver;
+}
+
+#midbox {
+  width: 100%;
+  font-size: 17px;
+  margin: 0px;
+  padding: 8px 0px 8px 0px;
+  background-color: #9a9a9a;
+  color: White;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Helvetica', Arial, Verdana;
+  line-height: 18px;
+  border-top: 2px solid #9a9a9a;
+  border-left: 1px solid #9a9a9a;
+  border-right: 1px solid #9a9a9a;
+}
+
+#midboxcont {
+  width: 100%;
+  margin: 0px;
+  padding: 8px 0px 8px 0px;
+  border-bottom: 3px solid #9a9a9a;
+  border-left: 1px solid #9a9a9a;
+  border-right: 1px solid #9a9a9a;
+  background: -moz-linear-gradient(bottom, #ffffff, #fff);
+  background: -webkit-gradient(linear, center bottom, center top, from(#ffffff), to(#fff));
+}
+
+#midboxcont ul li {
+  padding: 0px 0px 0 -8px;
+  list-style: url(media/bullet_grey.gif);
+  text-indent: 0px;
+}
+
+#midboxpromo {
+  padding: 0px 5px 0 5px;
+  background-image: url(media/divider-hort.gif);
+  background-repeat: repeat-x;
+}
+
+#midboxtext {
+  padding: 0px 5px;
+  padding-bottom: 0.5em;
+  font-size: 13px;
+}
+
+.curved { 
+
+-moz-border-radius:5px; 
+-webkit-border-radius:5px; 
+-khtml-border-radius:5px; 
+border-radius:5px; 
+#behavior:url(border-radius.htc);
+}
+.curved1 {
+-moz-border-radius:5px; 
+-webkit-border-radius:5px; 
+-khtml-border-radius:5px; 
+border-radius:5px; 
+#behavior:url(border-radius.htc);
+}
+
+div.clear {
+  clear: both;
+}
+
+/** Left menu */
+div.letterBrowser {
+  margin-left: 5px;
+  font-size: 11px;
+  text-align: center;
+  padding: 10px 5px 0;
+}
+
+div.letterBrowser ul.letter  {
+  margin: 0;
+  padding: 0;
+}
+
+div.letterBrowser li.letter  {
+  text-align: center;
+  list-style: none;
+  float: left;
+  width: 1.4em;
+  border: 1px solid #ddd;
+  margin: 1px;
+}
+
+div.anchorButton {
+  display: inline;
+  border: 1px solid #f99;
+  background-color: #fdd;
+  padding: 2px 4px;
+  margin: 0;
+}
+
+div.anchorButton a {
+  color: #E00;
+}
+
+/** pagination */
+div.pagination {
+  margin: 5px 0;
+}
+
+div.pagination ul {
+  margin: 0;
+  padding: 0;
+}
+
+div.pagination ul li {
+  text-align: center;
+  border: 1px solid #ccc;
+  list-style: none;
+  float: left;
+  width: 10px;
+  margin: 1px;
+  padding: 1px 2px;
+}
+
+div.pagination ul li.current {
+  background-color: #ddd;
+}
+
+#innerBody {
+  margin: 10px;
+}
+
+.loadingDialog {
+  text-align: center;
+  margin: 10px 0;
+}
+    
+/** group details dialog */
+#groupDetailDialog .close {
+  text-align: right;
+}
+
+#groupDetailDialog div.groupDetailDialogInner {
+  padding: 10px;
+}
+
+#groupDetailDialog table {
+  margin: 5px 0;
+  border: 2px solid #ccc;
+  width: 100%;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+
+#groupDetailDialog table tr th {
+  padding: 2px 4px;
+  background-color: #ccc;
+}
+
+#groupDetailDialog table tr.odd td {
+  background-color: #eee;
+}
+
+#groupDetailDialog table td {
+  vertical-align: top;
+  padding: 2px 4px;
+}
+
+#nextbtn #next{
+    background: #d5dcee;
+}
+
+#nextbtn #back{
+    background: #E8ADAA;
+}
+
+/** Widgets */
+#widgetSearch {
+    position: absolute;
+    top: 4px;
+    font-size: 10px;
+    float: right;
+    clear: both;
+    background-color: #FEDE58;
+    padding: 10px 10px 0 10px;
+    width: 222px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#widgetSearchText {
+    width: 185px;
+    height: 14px;
+    border: none;
+    background: transparent;
+    padding: 4px 5px 4px 0;
+    outline: none;
+    font-size: 11px;
+}
+
+#widgetSearch .searchPlaceholder {
+    width: 210px;
+    padding: 0 5px;
+    background-color: white;
+    border: 1px solid #999;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+#widgetSearch .submit {
+    width: 12px;
+    height: 14px;
+    vertical-align: middle;
+    background: url(../images/btn_search_box.gif) no-repeat center center;
+    border: none;
+}
+
+.widget {
+    width: 217px;
+}
+
+.widget h3 {
+    margin: 1px 0 3px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.widget .body {
+    padding: 8px 10px;
+    border: 1px solid #000;
+}
+
+.widget .header {
+    background: url(../images/tajukkiri.jpg) no-repeat;
+    height: 30px;
+}
+
+.widget .separator {
+    border-right: 1px solid #999;
+    margin-right: 5px;
+    padding-left: 5px;
+}
+
+.widget .header h2 {
+    font-size: 11px;
+    color: white;
+    padding: 8px 20px;
+    margin: 0;
+}
+
+.widget .row {
+    float: left;
+    margin-bottom: 8px;
+}
+
+#widgetLogin {
+    background-color: #FEDE58;
+}
+
+#widgetLogin label,
+#widgetLogin input {
+    margin: 0;
+    padding: 0;
+}
+
+#widgetLogin label {
+    width: 60px;
+    float: left;
+    clear: left;
+}
+
+#widgetLogin input[type=text],
+#widgetLogin input[type=password] {
+    float: left;
+    width: 120px;
+}

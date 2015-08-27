@@ -1,0 +1,59 @@
+div#searchForm {
+  padding: 4px 10px 2px;
+  background-color: #ddd;  
+}
+
+div#searchForm .group {
+  margin: 0 0 4px;
+}
+
+div#searchForm .group input[type="radio"] {
+  vertical-align: middle;
+  /** margin-top: -1px; */
+  margin-bottom: 6px;
+}
+
+div#searchForm input[type="submit"] {
+  padding: 3px 8px;
+}
+
+p.resultMsg {
+  font-size: 14px;
+}
+
+div.resultRow {
+  padding-left: 10px;
+  padding-right: 15px;
+  margin-bottom: 10px;
+}
+
+div.resultRow div {
+  margin-bottom: 3px;
+}
+
+div.resultRow div.authors {
+  margin-top: 10px;
+  border-top: 1px solid #999;
+  padding-top: 20px;
+  font-size: 10px;
+}
+
+div.resultRow div.title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+div.resultRow div.misc {
+  font-size: 10px;
+  font-style: italic;
+}
+
+div.resultRow div.abstract {
+  font-size: 12px;
+  text-align: justify;
+}
+
+div.resultRow span.highlight {
+  background-color: yellow;
+  padding: 2px;
+}

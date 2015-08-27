@@ -1,0 +1,78 @@
+#content table {
+  border: 1px solid #999;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 10px;
+}
+
+#content th,
+#content td {
+  padding: 3px 5px;
+  vertical-align: top;
+  border-style: solid;
+  border-color: #999;
+  border-width: 0 1px 0 0;
+  border-collapse: collapse;
+}
+
+#content thead {
+  background-color: #ddd; 
+}
+
+#content tr.odd {
+  background-color: #def;
+}
+
+#content td .suggest {
+  display: inline;
+}
+
+#content td .hiddenSuggest {
+  display: none;
+}
+
+span.edit,
+#content td a.edit {
+  border: 1px solid #fbb;
+  background-color: #fcc;
+  padding: 1px 3px;
+}
+
+#content td a.edit {
+  margin-left: 10px;
+  float: right;
+}
+
+#content div.paginator {
+  margin: 10px 0;
+}
+
+span.highlight {
+  background-color: #fd3;
+  padding: 2px 3px;
+}
+
+#editorPopup {
+  box-shadow: rgba(0, 0, 0, 0.75) 0 10px 30px;
+  border: 4px solid #999;
+  background-color: white;
+  top: 100px;
+  left: 300px;
+  position: absolute;
+  display: none;
+  /* width: 320px; */
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 20;
+  float: left;
+}
+
+#editorPopup input {
+  float: right;
+}
+
+#editorPopup textarea.text {
+  margin: 10px auto;
+  height: 100px;
+  width: 320px;
+}

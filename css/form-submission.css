@@ -1,0 +1,104 @@
+.articleSubmission p {
+  margin-bottom: 5px;
+}
+
+#msg {
+  color: red;
+  margin-bottom: 10px;
+}
+
+#login_form {
+  background-color: #ddd;
+  height: 65px;
+}
+
+#login_form .input {
+  float: left;
+  width: 250px;
+}
+
+#login_form .button {
+  padding-top: 8px;
+  float: left;
+}
+
+#login_form .button input {
+  padding: 5px 8px;
+}
+
+#login_form dd,
+#login_form dt,
+#login_form input {
+  padding: 0;
+  margin: 2px;
+}
+
+#login_form dd,
+#login_form dt {
+  padding: 2px;
+}
+
+#login_form input[type="text"],
+#login_form input[type="password"] {
+  width: 150px;
+}
+
+#login_form dd {
+  width: 60px;
+  float: left;
+  clear: left; 
+}
+
+#login_form dt {
+  /* float: left; */
+  display: inline;
+}
+
+
+.articleSubmission {
+  font-family: Arial, helvetica;
+  font-size: 10px;
+}
+
+.articleSubmission table {
+}
+
+.articleSubmission table th, .articleSubmission table td {
+  padding: 2px;
+}
+
+.articleSubmission table th {
+  width: 140px;
+  text-align: left;
+  padding-top: 4px;
+  vertical-align: top;
+}
+
+.articleSubmission table td {
+  /* border: 1px solid #ddd; */
+  margin: 0;
+}
+
+.articleSubmission input {
+  margin-bottom: 2px;
+}
+
+.articleSubmission input[type="text"],
+.articleSubmission textarea {
+  width: 240px;
+}
+
+.articleSubmission textarea {
+  height: 120px;
+}
+
+.articleSubmission .subform {
+  border: 1px solid #999;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#author_form #author_list,
+#manuscripts_form .MultiFile-label {
+  font-size: 9pt;
+}
