@@ -61,7 +61,7 @@
               <?php endif ?>
               <tr bgcolor="#E6E6E6">
                 <td><?php echo ++$i ?></td>
-                <td><?php echo $journal['name'] ?></td>
+                <td style="width: 65%; text-align: left;"><?php echo $journal['name'] ?></td>
                 <td>10</td>
                 <td>14</td>
                 <td>23</td>

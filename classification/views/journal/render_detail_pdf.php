@@ -1,11 +1,10 @@
 <style type="text/css">
 		<!--
 
-		
 		.tbold {
 			font-weight: bold;
 		} 
-		 ;
+		
 		
 		td {
 		  padding:5px; 
@@ -53,9 +52,8 @@
 		  
 		  
 		 
-          <div>
             
-		  <table cellspacing="3px" style="margin:20px;max-width: 100%; solid;position: relative; border:1px solid;">
+            <table cellspacing="3px" style="width: 100%; border:1px solid;margin:20px;" class="table-list">
          
 			   <tr bgcolor="#999999">
 					<th>Criteria.</th>
@@ -65,16 +63,13 @@
 	
                 <?php for($x = 0; $x < 10 ; $x++){?>
 				  <tr bgcolor="#E6E6E6">
-					<td><?php echo "criteria".$x ?></td>
-					<td><?php echo "score".$x ?></td>
-					<td><?php echo "remark".$x ?></td>
+					<td style="width: 45%; text-align: left;"><?php echo "criteria".$x ?>xxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxx</td>
+					<td style="width: 10%; "><?php echo "score".$x ?></td>
+					<td style="width: 40%; text-align: left;"><?php echo "remark".$x ?></td>
 				  </tr>
 				<?php }?>
-                
-            
-              
+     
             </table>
-          </div>
  
 
 
