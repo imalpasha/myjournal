@@ -37,7 +37,7 @@ class CriteriaModel extends BaseModel
 	function updateCriteria($criteriaValue = null, $choiceValues = null) {
 		//if ($criteriaID != null) {
 			
-			echo $criteria_id = $criteriaValue['criteria_id'];
+			$criteria_id = $criteriaValue['criteria_id'];
 			
 			$criteriaUpdate = array(
 				"criteria_name" => $criteriaValue['criteria_name'],
@@ -45,28 +45,19 @@ class CriteriaModel extends BaseModel
 				"criteria_type" => $criteriaValue['criteria_type'],
 			);
 			
-			$x = $this->db->criteria->where("id=?",$criteria_id)->fetch();
+		
+		$update1 = $this->db2->prepare("UPDATE criteria SET criteria_name = ? , compulsory=?,criteria_type =? WHERE id = ?");
+		$update1->execute(array($criteriaValue['criteria_name'],$criteriaValue['compulsory'],$criteriaValue['criteria_type'],$criteriaValue['criteria_id']));
+		//$update1->execute($criteriaUpdate);
 
-			if($x)
-			{
-				$criteria = $x->update($criteriaUpdate);
-				$criteria = $x->update($criteriaUpdate);
-
-			}
+		
 			if ($choiceValues != null) {
-						
-						$z = $this->db->choice->where("criteria_id=?",$criteria_id);
-						$disableAllRelated = array(
-							"status" => 'disable',
-						);
-						if($z){
-							$h = $z->update($disableAllRelated);
-						}
+				
+						$stmt = $this->db2->prepare("UPDATE choice SET status = ? WHERE criteria_id = ?");
+						$stmt->execute(array("disable",$criteria_id));
 						
 						foreach ($choiceValues as $choiceValue) {
-							
-							//print_r($choiceValue);
-							
+														
 							$choiceUpdate = array(
 							"choice_name" => $choiceValue['choice_name'],
 							"marks" => $choiceValue['marks'],
@@ -74,17 +65,22 @@ class CriteriaModel extends BaseModel
 							"criteria_id" => $criteria_id,
 							);
 							
+							$choice_id = $choiceValue['choice_id'];
 							
-							echo $choice_id = $choiceValue['choice_id'];
 							if($choice_id != ""){
-								$y = $this->db->choice->where("id=?",$choice_id)->fetch();
-								$k = $y->update($choiceUpdate);
-							}
-							else{
-								$v = $this->db->choice->insert($choiceUpdate);
+				
+			$stmt2 = $this->db2->prepare("UPDATE choice SET choice_name=?,marks=?,status=? WHERE id = ?");
+			$stmt2->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$choice_id));
+
 							}
 							
-						}
+							else{
+		
+			$stmt3 = $this->db2->prepare("INSERT INTO choice (choice_name,marks,status,criteria_id) VALUES (?,?,?,?)");
+			$stmt3->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$criteria_id));
+
+					}		
+				}
 			}
 
 		return true;
