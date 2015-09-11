@@ -36,11 +36,11 @@
                       <td><?php echo $row['criteria_type'] ?></td>
                       <td>
                         <ul style="padding-left:20px">
-                        <?php foreach ($row->choice() as $choice): ?>
-                         <?php if($choice['status'] == "enable") { ?>
-						  <li><?php echo $choice['choice_name'] ?></li>
+                        <?php 
+						foreach ($choice as $choiceRow): ?>
+                         <?php if($choiceRow['criteria_id'] == $row['id']) { ?>
+						  <li><?php echo $choiceRow['choice_name'] ?></li>
 						  <?php } endforeach ?>
-                      
                         </ul>
                       </td>
                       <td>
@@ -62,9 +62,10 @@
                       <td><?php echo $row['criteria_type'] ?></td>
                       <td>
                         <ul style="padding-left:20px">
-                        <?php foreach ($row->choice() as $choice): ?>
-                          <?php if($choice['status'] == "enable") { ?>
-						  <li><?php echo $choice['choice_name'] ?></li>
+                        <?php 
+						foreach ($choice as $choiceRow): ?>
+                         <?php if($choiceRow['criteria_id'] == $row['id']) { ?>
+						  <li><?php echo $choiceRow['choice_name'] ?></li>
 						  <?php } endforeach ?>
                         </ul>
                       </td>

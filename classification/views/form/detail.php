@@ -7,7 +7,7 @@
       </tr>
       <tr>
         <td height="30" background="images/tajukpanjang750.png">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fontWhiteBold"><?php echo $form['name']. ' (Total ' . count($form->category_criteria()) . ')' ?></span>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="fontWhiteBold"><?php echo $form['name'] ?><?php /*echo $form['name']. ' (Total ' . count($form->category_criteria()) . ')' */?></span>
         </td>
       </tr>
       <tr>

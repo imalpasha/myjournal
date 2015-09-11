@@ -28,8 +28,8 @@
                     <tr>
                       <td><?php echo ++$i ?></td>
                       <td><a href="?id=<?php echo $row['id'] ?>"><?php echo $row['name'] ?></a></td>
-                      <td><center><?php echo count($row->category_criteria()) ?></center></td>
-                      <td>
+                      <td><center><?php echo $row['counter'] ?></center></td>
+					 <td>
                         <center>
                         <a href="#">Edit</a> | 
                         <a href="#">Delete</a>

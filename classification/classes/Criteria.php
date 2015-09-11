@@ -13,6 +13,8 @@ class Criteria extends BaseClass
     function indexAction() {
         $data['compulsory'] = $this->criteriaModel->getCriterias();
         $data['optional'] = $this->criteriaModel->getCriterias(0);
+		$data['choice'] = $this->criteriaModel->getChoice();
+		
         $this->render('criteria/list', $data);
     }
 
