@@ -3,7 +3,7 @@
       <tr>
         <td height="30">
           <a href="#">Home</a> &gt; List of Journals
-        </td>                                             
+        </td>
       </tr>
       <tr>
         <td height="30" background="images/tajukpanjang750.png">
@@ -13,10 +13,10 @@
       <tr>
         <td valign="top" style="padding:20px">
           <div style="width:100%;margin-bottom:30px">
-            
+
             <div style="float:left;width:50%;">
               <form method="get" action="">
-                <input type="text" name="search" placeholder=" Search Journal" size="40">
+                <input type="text" name="search" placeholder=" Search Journal" size="40" value="<?php echo $_GET['search'] ?>">
                 <input type="submit" value="Search">
               </form>
             </div>

@@ -9,15 +9,15 @@ class Journal extends BaseClass
 	public $journalModel;
 	public $limit = 50;
 
-    function __construct() {
-    	$this->journalModel = new JournalModel();
-    	$this->criteriaModel = new CriteriaModel();
-    	$this->formModel = new FormModel();
-    }
+	function __construct() {
+		$this->journalModel = new JournalModel();
+		$this->criteriaModel = new CriteriaModel();
+		$this->formModel = new FormModel();
+	}
 
-    function indexAction() {
-    
-    	// get parameters
+	function indexAction() {
+
+		// get parameters
 		$search = isset($_GET['search']) ? $_GET['search'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$offset = ($page - 1) * $this->limit;
@@ -26,12 +26,12 @@ class Journal extends BaseClass
 		$total = $this->journalModel->getCount($search);
 
 		// get list of journals with pagination limit
-    	$journals = $this->journalModel->getJournals($this->limit, $offset, $search);
+		$journals = $this->journalModel->getJournals($this->limit, $offset, $search);
 
 		// setup pagination
-    	$paginator = new SqlPaginator($page, $this->limit, $total);
+		$paginator = new SqlPaginator($page, $this->limit, $total);
 		$paginator_params = array(
-		  'search' => $search,
+			'search' => $search,
 		);
 		$paginator->setGetParameters($paginator_params);
 		$pagination = $paginator->getPagination();
@@ -42,75 +42,94 @@ class Journal extends BaseClass
 		$data['offset'] = $offset;
 
 		// render view
-        $this->render('journal/list', $data);
-    }
+		$this->render('journal/list', $data);
+	}
 
-    function evaluateAction() {
+	function evaluateAction() {
 
-    	$id = $_GET['id'];
+		$id = $_GET['id'];
 
-    	// add current evaluation to database
-    	if (isset($_POST['submitButton'])) {
-    		echo '<pre>';
-    		print_r($_POST);
-    		echo '</pre>';
+		// add current evaluation to database
+		if (isset($_POST['submitButton'])) {
+			echo '<pre>';
+			print_r($_POST);
+			echo '</pre>';
 
-    	}
+		}
 
-    	// show evaluation form
-    	$data['journal'] = $this->journalModel->getJournal($id);
-    	$data['disciplineName'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
-    	$data['compulsory'] = $this->criteriaModel->getCriterias();
+		// show evaluation form
+		$data['journal'] = $this->journalModel->getJournal($id);
+		$data['disciplineName'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
+		$data['compulsory'] = $this->criteriaModel->getCriterias();
 		$data['optional'] = $this->criteriaModel->getCriterias(0);
-    	$this->render('journal/evaluation_form', $data);
-    }
+		$this->render('journal/evaluation_form', $data);
+	}
 
-    function evaluatedJournalsAction() {
-    
-    	// get parameters
+	function evaluatedJournalsAction() {
+
+		// get parameters
 		$search = isset($_GET['search']) ? $_GET['search'] : '';
+		$discipline = isset($_GET['discipline']) ? $_GET['discipline'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$offset = ($page - 1) * $this->limit;
 
+		// get available forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+
+		// check form parameter
+		if (isset($_GET['form'])) {
+			$form = $_GET['form'];
+		}
+
+		$year = date('Y');
+		// check year parameter
+		if (isset($_GET['year'])) {
+			$year = $_GET['year'];
+		}
+		else {
+			$_GET['year'] = $year;
+		}
+
 		// get total records
-		$total = $this->journalModel->getCount($search);
+		$total = $this->journalModel->getEvaluatedCount($search);
 
 		// get list of journals with pagination limit
-    	$journals = $this->journalModel->getJournals($this->limit, $offset, $search);
+		$journals = $this->journalModel->getEvaluatedJournals($this->limit, $offset, $search, $form, $year, $discipline);
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
 
-		// setup pagination
-    	$paginator = new SqlPaginator($page, $this->limit, $total);
-		$paginator_params = array(
-		  'search' => $search,
-		);
-		$paginator->setGetParameters($paginator_params);
-		$pagination = $paginator->getPagination();
+		$offset = 0;
+		$pagination = '';
+
+		$disciplines = $this->journalModel->getDiscipline();
 
 		// set data to be passed to view
 		$data['journals'] = $journals;
 		$data['pagination'] = $pagination;
 		$data['offset'] = $offset;
+		$data['fullMarks'] = $fullMarks;
+		$data['disciplines'] = $disciplines;
 
-		$data['forms'] = $this->formModel->getForms();
+		$data['forms'] = $forms;
 
 		// render view
-        $this->render('journal/result_list', $data);
-    }
+		$this->render('journal/result_list', $data);
+	}
 
 	/* IMAL - EDIT DUMMY VIEW */
-	
+
 	function editJournal() {
-    
+
 		// render view
-        $this->render('journal/detail');
-    }
-	
-	
+		$this->render('journal/detail');
+	}
+
+
 	/* IMAL - EXPORT */
-	
+
 	function toPDF() {
-    
-    	// get parameters
+
+		// get parameters
 		$search = isset($_GET['search']) ? $_GET['search'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$offset = ($page - 1) * $this->limit;
@@ -119,29 +138,29 @@ class Journal extends BaseClass
 		$total = $this->journalModel->getCount($search);
 
 		// get list of journals with pagination limit
-    	$journals = $this->journalModel->getJournalsFullList($search);
+		$journals = $this->journalModel->getJournalsFullList($search);
 
 		// set data to be passed to view
 		$data['journals'] = $journals;
 		$data['forms'] = $this->formModel->getForms();
 
 		// render view
-        $this->render('journal/render_list_pdf', $data);
-    }
-	
+		$this->render('journal/render_list_pdf', $data);
+	}
+
 	function toPDFDetail() {
 		// render view
-        $this->render('journal/render_detail_pdf');
-    }
-	
+		$this->render('journal/render_detail_pdf');
+	}
+
 	function toExcelDetail() {
 		// render view
-        $this->render('journal/render_detail_excel');
-    }
-	
+		$this->render('journal/render_detail_excel');
+	}
+
 	function toExcel() {
-    
-    	// get parameters
+
+		// get parameters
 		$search = isset($_GET['search']) ? $_GET['search'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
 		$offset = ($page - 1) * $this->limit2;
@@ -149,15 +168,15 @@ class Journal extends BaseClass
 		// get total records
 		$total = $this->journalModel->getCount($search);
 
-    	$journals = $this->journalModel->getJournalsFullList($search);
+		$journals = $this->journalModel->getJournalsFullList($search);
 
 		$data['journals'] = $journals;
-		
+
 		$data['offset'] = $offset;
 
 		$data['forms'] = $this->formModel->getForms();
 
 		// render view
-        $this->render('journal/render_list_excel', $data);
-    }
+		$this->render('journal/render_list_excel', $data);
+	}
 }
