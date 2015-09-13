@@ -132,19 +132,5 @@ $(document).ready(function() {
     $('.qselect').change(function() {
         $('#form-search').submit()
     })
-
-    // var currURL = window.location.origin + window.location.pathname
-    //
-    // $('#select-year').change(function() {
-    //     // add year and form parameters
-    //     var newURL = currURL + '?year=' + $(this).val() + '&form=' + $('#select-category').val()
-    //     location.href = newURL;
-    // })
-    //
-    // $('#select-category').change(function() {
-    //     // add year and form parameters
-    //     var newURL = currURL + '?year=' + $('#select-year').val() + '&form=' + $(this).val()
-    //     location.href = newURL;
-    // })
 })
 </script>

@@ -5,22 +5,27 @@ class CriteriaModel extends BaseModel
 {
 
 	function getCriterias($compulsory = 1) {
-		//return $this->db->criteria->where('compulsory', $compulsory);
-		$stmt3 = $this->db2->prepare("SELECT * FROM criteria WHERE compulsory=?");
+
+		$stmt3 = $this->db2->prepare('SELECT * FROM criteria WHERE compulsory=? AND status="enable"');
 		$stmt3->execute(array($compulsory));
-		return $result = $stmt3->fetchAll();
+		$rows = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+		foreach ($rows as &$row) {
+			$row['choices'] = $this->getChoice($row['id']);
+		}
+
+		return $rows;
 	}
-	
-	function getChoice() {
-		//return $this->db->criteria->where('compulsory', $compulsory);
-		$stmt3 = $this->db2->prepare("SELECT * FROM choice WHERE status=?");
-		$stmt3->execute(array("enable"));
-		return $result = $stmt3->fetchAll();
+
+	function getChoice($criteriaId) {
+		$stmt = $this->db2->prepare('SELECT * FROM choice WHERE criteria_id=? AND status="enable"');
+		$stmt->execute(array($criteriaId));
+		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $rows;
 	}
 
 	function getCriteria($id) {
-		return $this->db->criteria->where('id', $id);
-	
 		$stmt3 = $this->db2->prepare("SELECT * FROM criteria WHERE id=?");
 		$stmt3->execute(array($id));
 		return $result = $stmt3->fetchAll();
@@ -28,12 +33,11 @@ class CriteriaModel extends BaseModel
 
 	function insertData($criteriaValue = null, $choiceValues = null) {
 		if ($criteriaValue != null) {
-			//$criteria = $this->db->criteria->insert($criteriaValue);	
-			
+
 			$stmt3 = $this->db2->prepare("INSERT INTO criteria (criteria_name,compulsory,criteria_type) VALUES (?,?,?)");
 			$stmt3->execute(array($criteriaValue['criteria_name'],$criteriaValue['compulsory'],$criteriaValue['criteria_type']));
-			$lastInsertID = $this->db2->lastInsertId();			
-						
+			$lastInsertID = $this->db2->lastInsertId();
+
 			if ($lastInsertID != null) {
 				if ($choiceValues != null) {
 					foreach ($choiceValues as $choiceValue) {
@@ -52,56 +56,56 @@ class CriteriaModel extends BaseModel
 
 		return true;
 	}
-	
+
 	function updateCriteria($criteriaValue = null, $choiceValues = null) {
 		//if ($criteriaID != null) {
-			
+
 			$criteria_id = $criteriaValue['criteria_id'];
-			
+
 			/*$criteriaUpdate = array(
 				"criteria_name" => $criteriaValue['criteria_name'],
 				"compulsory" => $criteriaValue['compulsory'],
 				"criteria_type" => $criteriaValue['criteria_type'],
 			);*/
-			
-		
+
+
 		$update1 = $this->db2->prepare("UPDATE criteria SET criteria_name = ? , compulsory=?,criteria_type =? WHERE id = ?");
 		$update1->execute(array($criteriaValue['criteria_name'],$criteriaValue['compulsory'],$criteriaValue['criteria_type'],$criteriaValue['criteria_id']));
-		
+
 			if ($choiceValues != null) {
-				
+
 						$stmt = $this->db2->prepare("UPDATE choice SET status = ? WHERE criteria_id = ?");
 						$stmt->execute(array("disable",$criteria_id));
-						
+
 						foreach ($choiceValues as $choiceValue) {
-														
+
 							/*$choiceUpdate = array(
 							"choice_name" => $choiceValue['choice_name'],
 							"marks" => $choiceValue['marks'],
 							"status" => "enable",
 							"criteria_id" => $criteria_id,
 							);*/
-							
+
 							$choice_id = $choiceValue['choice_id'];
-							
+
 							if($choice_id != ""){
-				
+
 			$stmt2 = $this->db2->prepare("UPDATE choice SET choice_name=?,marks=?,status=? WHERE id = ?");
 			$stmt2->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$choice_id));
 
 							}
-							
+
 							else{
-		
+
 			$stmt3 = $this->db2->prepare("INSERT INTO choice (choice_name,marks,status,criteria_id) VALUES (?,?,?,?)");
 			$stmt3->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$criteria_id));
 
-					}		
+					}
 				}
 			}
 
 		return true;
 	}
-	
-	
+
+
 }
