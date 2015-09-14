@@ -67,8 +67,8 @@
                       <td><?php echo ++$i ?></td>
                       <td><p><?php echo $row['criteria_name'] ?></p></td>
                       <td class="td-choice">
-                        <?php foreach ($row->choice() as $choice): ?>
-                          <input class="input-choice" type="<?php echo $row['criteria_type'] ?>" name="compulsory[<?php echo $row['id'] ?>][]" value="<?php echo $choice['id'] ?>">
+                        <?php foreach ($row['choices'] as $choice): ?>
+                          <input class="input-choice" type="<?php echo $row['criteria_type'] ?>" name="compulsory[<?php echo $row['id'] ?>][]" value="<?php echo $choice['id'] ?>"  data-value="<?php echo $choice['marks'] ?>">
                           <?php echo $choice['choice_name'] ?><br>
                         <?php endforeach ?>
                       </td>
@@ -87,13 +87,13 @@
                       <td><?php echo ++$i ?></td>
                       <td><p><?php echo $row['criteria_name'] ?></p></td>
                       <td class="td-choice">
-                        <?php foreach ($row->choice() as $choice): ?>
-                          <input class="input-choice" type="<?php echo $row['criteria_type'] ?>" name="optional[<?php echo $row['id'] ?>][]" value="<?php echo $choice['id'] ?>">
+                        <?php foreach ($row['choices'] as $choice): ?>
+                          <input class="input-choice" type="<?php echo $row['criteria_type'] ?>" name="optional[<?php echo $row['id'] ?>][]" value="<?php echo $choice['id'] ?>" data-value="<?php echo $choice['marks'] ?>">
                           <?php echo $choice['choice_name'] ?><br>
                         <?php endforeach ?>
                       </td>
                       <td>
-                        <textarea name="remarks[<?php echo $row['id'] ?>" style="width:100%" rows="2"></textarea>
+                        <textarea name="remarks[<?php echo $row['id'] ?>]" style="width:100%" rows="2"></textarea>
                       </td>
                       <td class="td-score" style="text-align:center">0</td>
                     </tr>
