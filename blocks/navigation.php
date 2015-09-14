@@ -1,10 +1,11 @@
 <table border="0" valign="top">
 <?php $_SESSION['journal_id'] = ($_SESSION['journal_id']!=NULL) ? $_SESSION['journal_id'] : $_SESSION['id_journal_luar'];?>
-<?php 
+<?php
 // site-wide
 $short_name = "site-wide";
 // $nav_role_id = getRoleIdByShortName($short_name);
 ?>
+<?php $navigation_count = 0 ?>
 <?php if ( true) : ?>
   <?php $navigation_count++; ?>
   <tr valign="top">
@@ -32,7 +33,7 @@ $short_name = "site-wide";
               </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/indexation-add.php">Indexation </a></td>
-              </tr>       
+              </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/journal-editor-add.php">Editor Management</a></td>
               </tr>
@@ -102,7 +103,7 @@ $short_name = "editor";
 // $is_global_editor = in_array($_SESSION['user_id'], $editors);
 // $is_global_editor = isUserExistInRole(getRoleIdByShortName("site-wide"), $user_id);
 ?>
-<?php 
+<?php
 // For testing, check if current user is the global editor
 /*
 <tr><td>
@@ -140,8 +141,8 @@ $short_name = "editor";
                 </tr>
                 <tr>
                   <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/editor-view-checklist.php">Checklist Management</a></td>
-                </tr>                
-                
+                </tr>
+
                 <tr>
                   <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/eg-edit.php">Editorial Group Management</a></td>
                 </tr>
@@ -286,7 +287,7 @@ $short_name = "author";
               </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/coauthor-add.php">Add Authors</a></td>
-              </tr>      
+              </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/attach-add.php">Add Files</a></td>
               </tr>
@@ -295,7 +296,7 @@ $short_name = "author";
               </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/author-view-add.php">Article View</a></td>
-              </tr>      
+              </tr>
               <tr>
                 <td class="bg">&#8226; <a style="text-decoration:none; " href="<?php echo $APP_URL; ?>/reviewer-profile.php">Author Profile</a></td>
               </tr>

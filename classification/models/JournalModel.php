@@ -106,8 +106,8 @@ class JournalModel extends BaseModel
 			$stmt3 = $this->db2->prepare($sql3);
 			$stmt3->execute(array($evaluation['id']));
 			$answers = $stmt3->fetchAll(PDO::FETCH_ASSOC);
-			// $this->printr($answers);
 
+			// $this->printr($answers);
 			$totalCompulsory = 0;
 			$totalMarks = 0;
 			$totalOptional = 0;
@@ -129,6 +129,7 @@ class JournalModel extends BaseModel
 
 			// create array with all values needed
 			$ev = array(
+				'evaluation_id' => $evaluation['id'],
 				'name' => $evaluation['journal_name'],
 				'journalId' => $evaluation['journal_id'],
 				'totalMarks' => $totalMarks,
@@ -160,21 +161,66 @@ class JournalModel extends BaseModel
 		return $stmt->rowCount();
 	}
 
+	function getEvaluationDetail($evaluation_id, $form) {
+		$sql = 'SELECT j.name as journal_name, e.journal_id, j.discipline_id, j.publisher, e.year FROM evaluation e
+					INNER JOIN journals j on e.journal_id = j.id
+					WHERE e.id = ?';
+
+		$stmt = $this->db2->prepare($sql);
+		$stmt->execute(array($evaluation_id));
+		$evaluation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// get all criterias based on selected form (category)
+		$sql2 = 'SELECT criteria_id FROM category_criteria WHERE category_id=?';
+		$stmt2 = $this->db2->prepare($sql2);
+		$stmt2->execute(array($form));
+		$criterias = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+		// put all criterias' id in array
+		$criteriaIds = [];
+		foreach ($criterias as $row) {
+		 	array_push($criteriaIds, $row['criteria_id']);
+		}
+
+		// get all criteria with answers
+		$sql3 = 'SELECT criteria_name, choice_name, marks, compulsory, remarks FROM evaluation_answer ea
+					INNER JOIN criteria c on c.id = ea.criteria_id
+					INNER JOIN choice ch on ch.id = ea.choice_id
+					WHERE ea.evaluation_id=?
+					AND ea.criteria_id IN('.implode(',', $criteriaIds).')';
+
+		$stmt3 = $this->db2->prepare($sql3);
+		$stmt3->execute(array($evaluation_id));
+		$resultsList = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+		$totalMarks = 0;
+		// get marks of each answers and sum up its mark
+		foreach ($resultsList as $answer) {
+			// get marks of answer
+			$marks = $answer['marks'];
+
+			// add to total
+			$totalMarks = $totalMarks + $marks;
+		}
+
+		// create array with all values needed
+		$evaluation['totalMarks'] = $totalMarks;
+		$evaluation['resultList'] = $resultsList;
+
+		return $evaluation;
+	}
+
 	function insertEvaluate($journalId, $year, $criteriaChoices, $remarks) {
 
-		// insert evaluation and return object
-		$evaluation = $this->db2->evaluation->insert(array(
-			'journal_id' => $journalId,
-			'year' => $year
-		));
+		// insert evaluation and return inserted id
+		$stmt = $this->db2->prepare("INSERT INTO evaluation (journal_id,year) VALUES (?,?)");
+		$stmt->execute(array($journalId, $year));
+		$evaluationId = $this->db2->lastInsertId();
 
+		// insert answer choosen
 		foreach ($criteriaChoices as $criteriaId => $choices) {
 			foreach ($choices as $choiceId) {
-				$evaluation->evaluation_answer()->insert(array(
-					'criteria_id' => $criteriaId,
-					'choice_id' => $choiceId,
-					'remarks' => $remarks[$criteriaId]
-				));
+				$stmt2 = $this->db2->prepare("INSERT INTO evaluation_answer (evaluation_id,criteria_id,choice_id,remarks) VALUES (?,?,?,?)");
+				$stmt2->execute(array($evaluationId, $criteriaId, $choiceId, $remarks[$criteriaId]));
 			}
 		}
 	}

@@ -51,9 +51,14 @@ class Journal extends BaseClass
 
 		// add current evaluation to database
 		if (isset($_POST['submitButton'])) {
-			echo '<pre>';
-			print_r($_POST);
-			echo '</pre>';
+
+			// combine arrays
+    		$criteriaChoices = $_POST['optional'] + $_POST['compulsory'];
+    		$year = $_POST['year'];
+    		$remarks = $_POST['remarks'];
+    		$journalId = $id;
+
+			$result = $this->journalModel->insertEvaluate($journalId, $year, $criteriaChoices, $remarks);
 
 		}
 
@@ -62,6 +67,7 @@ class Journal extends BaseClass
 		$data['disciplineName'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
 		$data['compulsory'] = $this->criteriaModel->getCriterias();
 		$data['optional'] = $this->criteriaModel->getCriterias(0);
+
 		$this->render('journal/evaluation_form', $data);
 	}
 
@@ -114,6 +120,29 @@ class Journal extends BaseClass
 
 		// render view
 		$this->render('journal/result_list', $data);
+	}
+
+	function detailJournal() {
+		// list of dropdown forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+
+		// check form parameter
+		if (isset($_GET['form'])) {
+			$form = $_GET['form'];
+		}
+
+		// fullmark based on form id
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
+
+		$data['evaluation_id'] = $_GET['evaluation_id'];
+		$data['journal'] = $this->journalModel->getEvaluationDetail($_GET['evaluation_id'], $form);
+		$data['disciplineTitle'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
+		$data['forms'] = $forms;
+		$data['fullMarks'] = $fullMarks;
+
+		// render view
+		$this->render('journal/detail', $data);
 	}
 
 	/* IMAL - EDIT DUMMY VIEW */

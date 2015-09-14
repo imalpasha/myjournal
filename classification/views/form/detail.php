@@ -2,8 +2,8 @@
   <tbody>
       <tr>
         <td height="30">
-          <a href="#">Home</a> &gt; <a href="<?php echo $APP_URL; ?>/myjurnal/classification_categories.php">Categories</a> &gt; Category Detail
-        </td>                                             
+          <a href="#">Home</a> &gt; <a href="<?php echo $APP_URL; ?>/classification_categories.php">Categories</a> &gt; Category Detail
+        </td>
       </tr>
       <tr>
         <td height="30" background="images/tajukpanjang750.png">
@@ -37,7 +37,7 @@
                       </td>
                       <td>
                         <center>
-                        <a href="#">Edit</a> | 
+                        <a href="#">Edit</a> |
                         <a href="#">Delete</a>
                         </center>
                       </td>
@@ -47,7 +47,7 @@
                 </td>
               </tr>
             </table>
-            
+
           </div>
         </td>
       </tr>

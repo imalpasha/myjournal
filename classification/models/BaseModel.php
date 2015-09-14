@@ -10,4 +10,11 @@ class BaseModel
 		$this->db2 = new PDO('mysql:host=' . $DB_HOST. ';dbname=' . $DB_NAME. ';charset=utf8', $DB_USER, $DB_PASSWORD);
 
 	}
+
+	function printr($arr) {
+		echo "<pre>";
+		print_r($arr);
+		echo "</pre>";
+		// exit;
+	}
 }

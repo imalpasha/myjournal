@@ -18,18 +18,20 @@ class FormModel extends BaseModel
 	}
 
 	function insertData($categoryValue = null, $criteriaValues = null) {
+
+		// $this->printr($criteriaValues);exit;
 		if ($categoryValue != null) {
 			//$category = $this->db2->category->insert($categoryValue);
-			$stmt3 = $this->db2->prepare("INSERT INTO category (name) VALUES (?)");
-			$stmt3->execute(array($categoryValue['name']));
+			$stmt = $this->db2->prepare("INSERT INTO category (name) VALUES (?)");
+			$stmt->execute(array($categoryValue['name']));
 			$lastInsertID = $this->db2->lastInsertId();
 
 			if ($lastInsertID != null) {
 				if ($criteriaValues != null) {
 					foreach ($criteriaValues as $criteriaId) {
 						//$this->db2->category_criteria()->insert(array('category_id' => $category['id'], 'criteria_id' => $criteriaId));
-						$stmt3 = $this->db2->prepare("INSERT INTO category_criteria (category_id,criteria_id) VALUES (?,?)");
-						$stmt3->execute(array($category['id'],'criteria_id' => $criteriaId));
+						$stmt2 = $this->db2->prepare("INSERT INTO category_criteria (category_id,criteria_id) VALUES (?,?)");
+						$stmt2->execute(array($lastInsertID, $criteriaId));
 					}
 				}
 			}

@@ -3,7 +3,7 @@ include ('classification/classes/Journal.php');
 include ('include/admin-header.php');
 
 $journal = new Journal();
-$journal->editJournal();
+$journal->detailJournal();
 
 
 include ('include/admin-footer.php');

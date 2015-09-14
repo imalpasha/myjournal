@@ -95,7 +95,7 @@
                                 <td><?php echo round(($journal['totalMarks'] / $fullMarks) * 100, 2) ?></td>
                                 <td>
                                     <center>
-                                        <a href="#">Detail</a> |
+                                        <a href="classification_journals_detail.php?evaluation_id=<?php echo $journal['evaluation_id'] ?>">Detail</a> |
                                         <a href="#">Edit</a> |
                                         <a href="#">Delete</a>
                                     </center>
@@ -104,6 +104,7 @@
                         <?php endforeach; ?>
                     </table>
                 </div>
+                <div id="placeholder"></div>
             </td>
         </tr>
     </tbody>

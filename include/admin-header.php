@@ -8,7 +8,7 @@ $pageGroup = "backend";
 
 // check session
 include("include/session.checker.php");
-$user_id = $_SESSION["user_id"]; 
+$user_id = $_SESSION["user_id"];
 $username = $_SESSION["username"];
 $group = $_SESSION["group"];
 
@@ -43,6 +43,8 @@ include("include/SqlPaginator.php");
 <script type="text/javascript" language="javascript" src="js/author_group_picker.js"></script>
 <script type="text/javascript" language="javascript" src="js/criteria-add-dynamic.js"></script>
 <script type="text/javascript" language="javascript" src="js/evaluate-form.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.flot.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.flot.pie.min.js"></script>
 <link href="css/admin_main.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="lib/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/colorbox.css" rel="stylesheet" type="text/css" media="screen" />
@@ -65,5 +67,3 @@ include("include/SqlPaginator.php");
 		    <i><?php echo $_SESSION['error_msg']; unset($_SESSION['error_msg']) ?></i>
 		</div>
 		<?php endif ?>
-
-	    

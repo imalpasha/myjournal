@@ -21,12 +21,12 @@ class Form extends BaseClass
     }
 
     function createAction() {
-    
+
     	if (isset($_POST['submitButton'])) {
     		$categoryName = $_POST['category_name'];
     		$criteriaIds = $_POST['criteriaIds'];
 
-            $link = '/myjurnal/classification_create_form.php';
+            $link = $APP_URL . '/classification_create_form.php';
     		$category = array('name' => $categoryName);
 	    	$ins = $this->formModel->insertData($category, $criteriaIds);
 	    	if (!$ins)
