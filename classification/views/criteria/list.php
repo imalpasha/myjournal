@@ -2,8 +2,8 @@
   <tbody>
       <tr>
         <td height="30">
-          <a href="#">Home</a> &gt; <a href="#">List of Criteria</a> &gt; Evaluate
-        </td>                                             
+          <a href="#">Home</a> &gt; List of Criteria
+        </td>
       </tr>
       <tr>
         <td height="30" background="images/tajukpanjang750.png">
@@ -36,8 +36,8 @@
                       <td><?php echo $row['criteria_type'] ?></td>
                       <td>
                         <ul style="padding-left:20px">
-                        <?php 
-						foreach ($choice as $choiceRow): ?>
+                        <?php
+						foreach ($row['choices'] as $choiceRow): ?>
                          <?php if($choiceRow['criteria_id'] == $row['id']) { ?>
 						  <li><?php echo $choiceRow['choice_name'] ?></li>
 						  <?php } endforeach ?>
@@ -45,7 +45,7 @@
                       </td>
                       <td>
                         <center>
-							<a href="#" class="edit_criteria_mandatory" id="edit_<?php echo $row['id'] ?>">Edit</a> | 
+							<a href="#" class="edit_criteria_mandatory" id="edit_<?php echo $row['id'] ?>">Edit</a> |
                         <a href="#">Delete</a>
                         </center>
                       </td>
@@ -62,8 +62,8 @@
                       <td><?php echo $row['criteria_type'] ?></td>
                       <td>
                         <ul style="padding-left:20px">
-                        <?php 
-						foreach ($choice as $choiceRow): ?>
+                        <?php
+						foreach ($row['choices'] as $choiceRow): ?>
                          <?php if($choiceRow['criteria_id'] == $row['id']) { ?>
 						  <li><?php echo $choiceRow['choice_name'] ?></li>
 						  <?php } endforeach ?>
@@ -71,7 +71,7 @@
                       </td>
                       <td>
                         <center>
-						<a href="#" class="edit_criteria_optional" id="edit_<?php echo $row['id'] ?>">Edit</a> | 
+						<a href="#" class="edit_criteria_optional" id="edit_<?php echo $row['id'] ?>">Edit</a> |
                         <a href="#">Delete</a>
                         </center>
                       </td>
@@ -81,7 +81,7 @@
                 </td>
               </tr>
             </table>
-            
+
           </div>
         </td>
       </tr>
@@ -90,23 +90,23 @@
 <script>
 
 	$('.edit_criteria_mandatory').click(function(){
-		
+
 		var data = this.id;
 		var arr = data.split('_');
 		var classificationID = arr[1];
-		
-		window.location.replace("/myjurnal/classification_add_criteria.php?e=true&id="+classificationID+"");
+
+		window.location.replace("classification_add_criteria.php?e=true&id="+classificationID+"");
 	});
-	
+
 	$('.edit_criteria_optional').click(function(){
-		
+
 		var data = this.id;
 		var arr = data.split('_');
 		var classificationID = arr[1];
-		
-		window.location.replace("/myjurnal/classification_add_criteria.php?e=true&id="+classificationID+"");
+
+		window.location.replace("classification_add_criteria.php?e=true&id="+classificationID+"");
 	});
-	
-	
-	
+
+
+
 </script>

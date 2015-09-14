@@ -3,7 +3,7 @@
 		<tr>
 			<td height="30">
 				<a href="#">Home</a>
-				&gt; <a href="classification_evaluated_journals.php">List of Journals</a> 
+				&gt; <a href="classification_evaluated_journals.php">List of Journals</a>
 				&gt; Journal Detail
 			</td>
 		</tr>
@@ -63,20 +63,21 @@
 
 					<table width="100%" class="table-list" style="padding-top:10px">
 						<tr>
+							<th></th>
 							<th width="60%">Criteria</th>
 							<th>Choice</th>
 							<th>Score</th>
 							<th>Remarks</th>
 						</tr>
-						<?php $criteria_name = '' ?>
+						<?php $i = 0 ?>
 						<?php foreach ($journal['resultList'] as $row): ?>
 							<tr>
+								<td><?php echo ++$i ?></td>
 								<td><?php echo $row['criteria_name'] ?></td>
 								<td><?php echo $row['choice_name'] ?></td>
 								<td><?php echo $row['marks'] ?></td>
 								<td><?php echo $row['remarks'] ?></td>
 							</tr>
-							<?php $criteria_name = $row['criteria_name'] ?>
 						<?php endforeach ?>
 						</table>
 					</div>

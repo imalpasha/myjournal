@@ -32,7 +32,7 @@ class BaseClass
     function redirect($url) {
         echo '
         <script type="text/javascript">
-            window.location = "' . $url . '"
+            window.location = "' . $APPURL . $url . '"
         </script>';
     }
 
