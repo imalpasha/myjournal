@@ -1,22 +1,22 @@
 <?php
 class BaseClass
-{   
+{
     function render($viewFile = '', $data = array()) {
-        
+
         // get the file with path
         $file = dirname(__FILE__) . '/../views/' . $viewFile . '.php';
-        
+
         if (file_exists($file)) {
-            
+
             // data is the variables passed to views
             // extract $data into seperate variables based on its key
             foreach ($data as $key => $value) {
                 $$key = $value;
             }
-            
+
             // include the view file
             include_once ($file);
-        } 
+        }
         else {
             die('View file not exists at ' . $file);
         }

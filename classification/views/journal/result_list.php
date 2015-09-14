@@ -80,19 +80,46 @@
                             <th>%</th>
                         </tr>
                         <?php $i = $offset ?>
-                        <?php $section = 1 ?>
-                        <tr class="section">
-                            <td></td>
-                            <td colspan="6">Tahap Unknown<?php echo $section++ ?></td>
-                        </tr>
+                        <?php
+                        // variables to keep number of journal have for each level
+                        $counts = [0, 0, 0, 0, 0];
+
+                        // to keep the threshold value of each level
+                        $classes = [90, 70, 30, 20, 10];
+
+                        // labels for each levels
+                        $levels = ['A1', 'A2', 'B1', 'B2', 'B5'];
+
+                        $curentLevel = '';
+                        ?>
                         <?php foreach ($journals as $journal): ?>
+                            <?php $percentage = round(($journal['totalMarks'] / $fullMarks) * 100, 2) ?>
+                            <?php
+                            for ($k = 0; $k < count($classes); $k++) {
+                                if ($percentage >= $classes[$k]) {
+                                    $counts[$k]++;
+                                    if ($currentLevel != $levels[$k]) {
+                                        echo '
+                                        <tr class="section">
+                                            <td></td>
+                                            <td colspan="6">Tahap ' . $levels[$k] . '</td>
+                                        </tr>
+                                        ';
+
+                                        $currentLevel = $levels[$k];
+                                    }
+                                    break;
+                                }
+                            }
+
+                            ?>
                             <tr>
                                 <td><?php echo ++$i ?></td>
                                 <td><?php echo $journal['name'] ?></td>
                                 <td><?php echo $journal['compulsory'] ?></td>
                                 <td><?php echo $journal['optional'] ?></td>
                                 <td><?php echo $journal['totalMarks'] ?></td>
-                                <td><?php echo round(($journal['totalMarks'] / $fullMarks) * 100, 2) ?></td>
+                                <td><?php echo $percentage ?></td>
                                 <td>
                                     <center>
                                         <a href="classification_journals_detail.php?evaluation_id=<?php echo $journal['evaluation_id'] ?>">Detail</a> |
@@ -104,13 +131,21 @@
                         <?php endforeach; ?>
                     </table>
                 </div>
-                <div id="placeholder"></div>
+                <div id="placeholder" style="height:300px;margin-top:30px"></div>
             </td>
         </tr>
     </tbody>
 </table>
 <form id="downloadPDF" action="PDF/journal_list_pdf.php"></form>
 <form id="downloadExcel" action="Excel/journal_list_excel.php"></form>
+<?php
+$pieData = [];
+for ($i = 0; $i < count($levels); $i++) {
+    array_push($pieData, ['level' => $levels[$i], 'val' => $counts[$i]]);
+}
+$pieData = json_encode($pieData);
+?>
+<input type="hidden" id="jsonval" value='<?php echo $pieData ?>'>
 <script>
 $('#btnExport').click(function() {
 
@@ -133,5 +168,29 @@ $(document).ready(function() {
     $('.qselect').change(function() {
         $('#form-search').submit()
     })
+
+    var stringData = $('#jsonval').val()
+    var obj = $.parseJSON(stringData)
+    console.log(stringData)
+    var data = []
+    $.each(obj, function(i,row) {
+        var o = {
+            label: 'Tahap ' + row.level,
+            data: row.val
+        }
+
+        data.push(o)
+    })
+
+    $.plot('#placeholder', data, {
+        series: {
+            pie: {
+                show: true
+            }
+        },
+        legend: {
+            show: false
+        }
+    });
 })
 </script>

@@ -111,6 +111,7 @@ class JournalModel extends BaseModel
 			$totalCompulsory = 0;
 			$totalMarks = 0;
 			$totalOptional = 0;
+
 			// get marks of each answers and sum up its mark
 			foreach ($answers as $answer) {
 				// get marks of answer
@@ -138,11 +139,14 @@ class JournalModel extends BaseModel
 			);
 			// push to list
 			array_push($evaluatedJournals, $ev);
-
 		}
-		// exit;
-		return $evaluatedJournals;
 
+		// sort based on totalmarks - detail in function cmp
+		usort($evaluatedJournals, function($a, $b) {
+			return $b['totalMarks'] - $a['totalMarks'];
+		});
+
+		return $evaluatedJournals;
 	}
 
 	// counting total evaluated
