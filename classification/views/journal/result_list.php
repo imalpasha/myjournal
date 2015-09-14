@@ -132,6 +132,7 @@
                     </table>
                 </div>
                 <div id="placeholder" style="height:300px;margin-top:30px"></div>
+                <h3 style="text-align:center">Percentage of journal classification for each levels</h3>
             </td>
         </tr>
     </tbody>

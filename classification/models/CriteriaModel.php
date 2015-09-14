@@ -47,7 +47,7 @@ class CriteriaModel extends BaseModel
 				if ($choiceValues != null) {
 					foreach ($choiceValues as $choiceValue) {
 						$stmt3 = $this->db2->prepare("INSERT INTO choice (choice_name,marks,status,criteria_id) VALUES (?,?,?,?)");
-						$stmt3->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$criteria_id));
+						$stmt3->execute(array($choiceValue['choice_name'],$choiceValue['marks'],"enable",$lastInsertID));
 					}
 				}
 			}
