@@ -70,23 +70,31 @@
 							<th>Remarks</th>
 						</tr>
 						<?php $i = 0 ?>
+						<?php $scores = [] ?>
 						<?php foreach ($journal['resultList'] as $row): ?>
 							<tr>
-								<td><?php echo ++$i ?></td>
+								<td><?php echo ($i + 1) ?></td>
 								<td><?php echo $row['criteria_name'] ?></td>
 								<td><?php echo $row['choice_name'] ?></td>
 								<td><?php echo $row['marks'] ?></td>
 								<td><?php echo $row['remarks'] ?></td>
+								<?php
+								array_push($scores, [ 'value' => ($row['marks'] / $fullMarks * 100)]);
+								$i++;
+								?>
 							</tr>
 						<?php endforeach ?>
+						<?php $scores = array_reverse($scores) // reverse array to show criteria 1 start from top when in graph ?>
 						</table>
 					</div>
+					<div id="placeholder" style="height:<?php echo (40 * count($scores)) ?>px;margin-top:30px"></div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 	<form id="downloadPDF" action="PDF/journal_detail_pdf.php"></form>
 	<form id="downloadExcel" action="Excel/journal_detail_excel.php"></form>
+	<input type="hidden" id="jsonval" value='<?php echo json_encode($scores) ?>'>
 
 	<script>
 	$('#btnExport').click(function() {
@@ -108,4 +116,58 @@
 	$('.qselect').change(function() {
 		$(this).parent().submit();
 	})
+
+	// bar graph section
+
+	// get json data in hidden input
+	var stringData = $('#jsonval').val()
+    var obj = $.parseJSON(stringData)
+    var rawData = []
+	var ticks = []
+    $.each(obj, function(i,row) {
+        rawData.push([row.value, i]) // data in percentage
+		ticks.push([i, 'Criteria ' + (obj.length - i)]) // the left label (y label)
+    })
+
+	// set data
+    var dataSet = [{ label: "Percentage (%)", data: rawData, color: "#FF9933" }];
+
+	// set graph options
+    var options = {
+        series: {
+            bars: {
+                show: true
+            }
+        },
+        bars: {
+            align: "center",
+            barWidth: 0.5,
+            horizontal: true,
+            fillColor: { colors: [{ opacity: 0.8 }, { opacity: 1}] },
+            lineWidth: 1
+        },
+        xaxis: {
+            axisLabelFontSizePixels: 12,
+            axisLabelPadding: 10,
+            max: 100
+        },
+        yaxis: {
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelPadding: 3,
+            ticks: ticks,
+        },
+        legend: {
+			show: true
+        },
+        grid: {
+            hoverable: true,
+            borderWidth: 2,
+            backgroundColor: { colors: ["#fff", "#eee"] }
+        }
+    };
+
+	// plot the graph
+    $.plot($("#placeholder"), dataSet, options);
+
 	</script>
