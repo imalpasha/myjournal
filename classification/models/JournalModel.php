@@ -213,6 +213,32 @@ class JournalModel extends BaseModel
 		return $evaluation;
 	}
 
+	function getEvaluation($evaluation_id) {
+		$sql = 'SELECT j.name as journal_name, e.journal_id, j.discipline_id, j.publisher, e.year FROM evaluation e
+					INNER JOIN journals j on e.journal_id = j.id
+					WHERE e.id = ?';
+
+		$stmt = $this->db2->prepare($sql);
+		$stmt->execute(array($evaluation_id));
+		$evaluation = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		// get all criteria with answers
+		$sql3 = 'SELECT ea.choice_id, ea.criteria_id, criteria_type, remarks, marks FROM evaluation_answer ea
+					INNER JOIN criteria c on c.id = ea.criteria_id
+					INNER JOIN choice ch on ch.id = ea.choice_id
+					WHERE ea.evaluation_id=?
+					ORDER BY compulsory DESC';
+
+		$stmt3 = $this->db2->prepare($sql3);
+		$stmt3->execute(array($evaluation_id));
+		$resultsList = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+		// create array with all values needed
+		$evaluation['resultList'] = $resultsList;
+
+		return $evaluation;
+	}
+
 	function insertEvaluate($journalId, $year, $criteriaChoices, $remarks) {
 
 		// insert evaluation and return inserted id
@@ -225,6 +251,24 @@ class JournalModel extends BaseModel
 			foreach ($choices as $choiceId) {
 				$stmt2 = $this->db2->prepare("INSERT INTO evaluation_answer (evaluation_id,criteria_id,choice_id,remarks) VALUES (?,?,?,?)");
 				$stmt2->execute(array($evaluationId, $criteriaId, $choiceId, $remarks[$criteriaId]));
+			}
+		}
+	}
+
+	function updateEvaluate($evaluation_id, $year, $criteriaChoices, $remarks) {
+		// update evaluation based on evaluation id
+		$stmt = $this->db2->prepare("UPDATE evaluation SET year=? WHERE id=?");
+		$stmt->execute(array($year, $evaluation_id));
+
+		// delete old answers and add new
+		$stmt3 = $this->db2->prepare("DELETE FROM evaluation_answer WHERE evaluation_id=?");
+		$stmt3->execute(array($evaluation_id));
+
+		// insert new answer choosen
+		foreach ($criteriaChoices as $criteriaId => $choices) {
+			foreach ($choices as $choiceId) {
+				$stmt2 = $this->db2->prepare("INSERT INTO evaluation_answer (evaluation_id,criteria_id,choice_id,remarks) VALUES (?,?,?,?)");
+				$stmt2->execute(array($evaluation_id, $criteriaId, $choiceId, $remarks[$criteriaId]));
 			}
 		}
 	}
