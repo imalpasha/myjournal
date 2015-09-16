@@ -122,8 +122,8 @@
                                 <td><?php echo $percentage ?></td>
                                 <td>
                                     <center>
-                                        <a href="classification_journals_detail.php?evaluation_id=<?php echo $journal['evaluation_id'] ?>">Detail</a> |
-                                        <a href="#">Edit</a> |
+                                        <a href="classification_journals_detail.php?level=<?php echo $currentLevel ?>&form=<?php echo $_GET['form'] ?>&evaluation_id=<?php echo $journal['evaluation_id'] ?>">Detail</a> |
+                                        <a href="classification_evaluate.php?id=<?php echo $journal['evaluation_id'] ?>&e=1">Edit</a> |
                                         <a href="#">Delete</a>
                                     </center>
                                 </td>

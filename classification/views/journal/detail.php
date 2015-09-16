@@ -33,6 +33,7 @@
 							<form id="qform" action="" method="get">
 								<input type="hidden" name="evaluation_id" value="<?php echo $evaluation_id ?>">
 								<select class="qselect" id="form" name="form">
+								<input type="hidden" name="level" value="<?php echo $_GET['level'] ?>">
 									<?php foreach($forms as $row): ?>
 										<option value="<?php echo $row['id'] ?>" <?php echo $_GET['form'] == $row['id'] ? 'selected' : '' ?>><?php echo $row['name'] ?></option>
 									<?php endforeach; ?>

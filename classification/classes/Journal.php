@@ -60,6 +60,8 @@ class Journal extends BaseClass
 
 			$result = $this->journalModel->insertEvaluate($journalId, $year, $criteriaChoices, $remarks);
 
+			$_SESSION['success_msg'] = "Evaluation has been successfully created.";
+			$this->redirect('classification_evaluated_journals.php');
 		}
 
 		// show evaluation form
@@ -127,7 +129,7 @@ class Journal extends BaseClass
 		$form = $forms[0]['id'];
 
 		// check form parameter
-		if (isset($_GET['form'])) {
+		if (isset($_GET['form']) && $_GET['form'] != '') {
 			$form = $_GET['form'];
 		}
 
@@ -142,6 +144,33 @@ class Journal extends BaseClass
 
 		// render view
 		$this->render('journal/detail', $data);
+	}
+
+	function editEvaluateAction()
+	{
+		$evaluation_id = $_GET['id'];
+
+		// add current evaluation to database
+		if (isset($_POST['submitButton'])) {
+
+			// combine arrays
+    		$criteriaChoices = $_POST['optional'] + $_POST['compulsory'];
+    		$year = $_POST['year'];
+    		$remarks = $_POST['remarks'];
+
+			$result = $this->journalModel->updateEvaluate($evaluation_id, $year, $criteriaChoices, $remarks);
+
+			$_SESSION['success_msg'] = "Evaluation has been successfully updated.";
+			$this->redirect('classification_evaluated_journals.php');
+		}
+
+		// show evaluation form
+		$data['journal'] = $this->journalModel->getEvaluation($evaluation_id);
+		$data['disciplineName'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
+		$data['compulsory'] = $this->criteriaModel->getCriterias();
+		$data['optional'] = $this->criteriaModel->getCriterias(0);
+
+		$this->render('journal/edit_evaluation_form', $data);
 	}
 
 	/* IMAL - EDIT DUMMY VIEW */
