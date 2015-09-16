@@ -32,7 +32,7 @@
 						<td>
 							<form id="qform" action="" method="get">
 								<input type="hidden" name="evaluation_id" value="<?php echo $evaluation_id ?>">
-								<select class="qselect" name="form">
+								<select class="qselect" id="form" name="form">
 									<?php foreach($forms as $row): ?>
 										<option value="<?php echo $row['id'] ?>" <?php echo $_GET['form'] == $row['id'] ? 'selected' : '' ?>><?php echo $row['name'] ?></option>
 									<?php endforeach; ?>
@@ -92,8 +92,15 @@
 			</tr>
 		</tbody>
 	</table>
-	<form id="downloadPDF" action="PDF/journal_detail_pdf.php"></form>
-	<form id="downloadExcel" action="Excel/journal_detail_excel.php"></form>
+	<form id="downloadPDF" action="PDF/journal_detail_pdf.php">
+	<input type="hidden" id="evaluation_id" name="evaluation_id"/>
+	<input type="hidden" id="f" name="f"/>
+	</form>
+	
+	<form id="downloadExcel" action="Excel/journal_detail_excel.php">
+	<input type="hidden" id="excelEID" name="evaluation_id"/>
+	<input type="hidden" id="eForm" name="f"/>
+	</form>
 	<input type="hidden" id="jsonval" value='<?php echo json_encode($scores) ?>'>
 
 	<script>
@@ -102,10 +109,14 @@
 		var exportOption = $('#exportOption').find(":selected").text()
 		if(exportOption == "PDF"){
 			form = $('#downloadPDF');
+			$('#evaluation_id').val(<?php echo $_GET['evaluation_id']; ?>);
+			$('#f').val($("#form option:selected").text());
 			form.submit();
 		}
 		else if(exportOption == "Excel"){
 			form = $('#downloadExcel');
+			$('#excelEID').val(<?php echo $_GET['evaluation_id']; ?>);
+			$('#eForm').val($("#form option:selected").text());
 			form.submit();
 		}
 		else{

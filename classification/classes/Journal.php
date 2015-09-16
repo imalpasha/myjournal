@@ -115,7 +115,6 @@ class Journal extends BaseClass
 		$data['offset'] = $offset;
 		$data['fullMarks'] = $fullMarks;
 		$data['disciplines'] = $disciplines;
-
 		$data['forms'] = $forms;
 
 		// render view
@@ -156,56 +155,161 @@ class Journal extends BaseClass
 
 	/* IMAL - EXPORT */
 
-	function toPDF() {
+	/*function toPDF() {
 
 		// get parameters
-		$search = isset($_GET['search']) ? $_GET['search'] : '';
-		$page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$offset = ($page - 1) * $this->limit;
-
-		// get total records
-		$total = $this->journalModel->getCount($search);
-
-		// get list of journals with pagination limit
-		$journals = $this->journalModel->getJournalsFullList($search);
+		 $search = isset($_GET['s']) ? $_GET['s'] : '';
+		 $form = isset($_GET['f']) ? $_GET['f'] : '';
+		 $year = isset($_GET['y']) ? $_GET['y'] : '';
+		 $discipline = isset($_GET['d']) ? $_GET['d'] : '';
 
 		// set data to be passed to view
 		$data['journals'] = $journals;
 		$data['forms'] = $this->formModel->getForms();
+		//print_r($data['journals']);
+		// render view
+		//$this->render('journal/render_list_pdf', $data);
+		$this->evaluatedJournalsActionPDF();
+	}*/
+	
+		function toPDF() {
+
+		// get parameters
+		$search = isset($_GET['s']) ? $_GET['s'] : '';
+		$form = isset($_GET['f']) ? $_GET['f'] : '';
+
+		$discipline = isset($_GET['did']) ? $_GET['did'] : '';
+		$page = isset($_GET['page']) ? $_GET['page'] : 1;
+		$offset = ($page - 1) * $this->limit;
+
+		// get available forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+
+		$year = date('Y');
+		// check year parameter
+		if (isset($_GET['y'])) {
+			$year = $_GET['y'];
+		}
+		else {
+			$_GET['y'] = $year;
+		}
+
+		// get total records
+		$total = $this->journalModel->getEvaluatedCount($search);
+
+		// get list of journals with pagination limit
+		$journals = $this->journalModel->getEvaluatedJournals($this->limit, $offset, $search, $form, $year, $discipline);
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
+
+		$offset = 0;
+		$pagination = '';
+
+		$disciplines = $this->journalModel->getDiscipline();
+
+		// set data to be passed to view
+		$data['journals'] = $journals;
+		$data['pagination'] = $pagination;
+		$data['offset'] = $offset;
+		$data['fullMarks'] = $fullMarks;
+		$data['disciplines'] = $disciplines;
+		$data['forms'] = $forms;
 
 		// render view
+		//$this->render('journal/render_list_pdf', $data);
 		$this->render('journal/render_list_pdf', $data);
-	}
-
-	function toPDFDetail() {
-		// render view
-		$this->render('journal/render_detail_pdf');
-	}
-
-	function toExcelDetail() {
-		// render view
-		$this->render('journal/render_detail_excel');
+		
 	}
 
 	function toExcel() {
 
 		// get parameters
-		$search = isset($_GET['search']) ? $_GET['search'] : '';
+		$search = isset($_GET['s']) ? $_GET['s'] : '';
+		$form = isset($_GET['f']) ? $_GET['f'] : '';
+
+		$discipline = isset($_GET['did']) ? $_GET['did'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
-		$offset = ($page - 1) * $this->limit2;
+		$offset = ($page - 1) * $this->limit;
+
+		// get available forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+
+		$year = date('Y');
+		// check year parameter
+		if (isset($_GET['y'])) {
+			$year = $_GET['y'];
+		}
+		else {
+			$_GET['y'] = $year;
+		}
 
 		// get total records
-		$total = $this->journalModel->getCount($search);
+		$total = $this->journalModel->getEvaluatedCount($search);
 
-		$journals = $this->journalModel->getJournalsFullList($search);
+		// get list of journals with pagination limit
+		$journals = $this->journalModel->getEvaluatedJournals($this->limit, $offset, $search, $form, $year, $discipline);
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
 
+		$offset = 0;
+		$pagination = '';
+
+		$disciplines = $this->journalModel->getDiscipline();
+
+		// set data to be passed to view
 		$data['journals'] = $journals;
-
+		$data['pagination'] = $pagination;
 		$data['offset'] = $offset;
+		$data['fullMarks'] = $fullMarks;
+		$data['disciplines'] = $disciplines;
+		$data['forms'] = $forms;
 
-		$data['forms'] = $this->formModel->getForms();
-
+		//print_r($journals);
 		// render view
 		$this->render('journal/render_list_excel', $data);
+	}
+	
+	function toPDFDetail() {
+		
+		// list of dropdown forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+	
+		// fullmark based on form id
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
+
+		$data['evaluation_id'] = $_GET['evaluation_id'];
+		$data['journal'] = $this->journalModel->getEvaluationDetail($_GET['evaluation_id'], $form);
+		$data['disciplineTitle'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
+		$data['forms'] = $forms;
+		$data['fullMarks'] = $fullMarks;
+		
+		// render view
+		$excel = true;
+		if($excel){
+			$this->render('journal/render_detail_excel',$data);		
+		}
+		else{
+			$this->render('journal/render_detail_pdf',$data);
+		}
+	}
+
+	function toExcelDetail() {
+	
+		// list of dropdown forms
+		$forms = $this->formModel->getForms();
+		$form = $forms[0]['id'];
+	
+		// fullmark based on form id
+		$fullMarks = $this->formModel->getTotalMarksForForm($form);
+
+		$data['evaluation_id'] = $_GET['evaluation_id'];
+		$data['journal'] = $this->journalModel->getEvaluationDetail($_GET['evaluation_id'], $form);
+		$data['disciplineTitle'] = $this->journalModel->getDiscipline($data['journal']['discipline_id']);
+		$data['forms'] = $forms;
+		$data['fullMarks'] = $fullMarks;
+		
+		// render view
+		$this->render('journal/render_detail_excel',$data);
 	}
 }

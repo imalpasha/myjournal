@@ -17,8 +17,8 @@ class CriteriaModel extends BaseModel
 		return $rows;
 	}
 
-	function getChoice($criteriaId) {
-		$stmt = $this->db2->prepare('SELECT * FROM choice WHERE criteria_id=? AND status="enable"');
+	function getChoice() {
+		$stmt = $this->db2->prepare('SELECT * FROM choice WHERE status="enable"');
 		$stmt->execute(array($criteriaId));
 		$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

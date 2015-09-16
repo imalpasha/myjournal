@@ -20,17 +20,16 @@
 		
 		-->
 		</style>
-		
-		
+
 		<table cellspacing="3px" style="margin:20px;max-width: 100%; solid;position: relative;">
              <tr>
-			<td class="tbold" width="100px;">Year</td><td><?php echo "year"; ?></td>
+			<td class="tbold" width="100px;">Year</td><td><?php echo $_GET['y']; ?></td>
              </tr>
             <tr>
-			<td class="tbold">Dicipline</td><td><?php echo "dicipline"; ?></td>
+			<td class="tbold">Dicipline</td><td><?php echo $_GET['d']; ?></td>
               </tr>
 			  <tr>
-				<td class="tbold">Form Category</td><td><?php echo "form category"; ?></td>
+				<td class="tbold">Form Category</td><td><?php echo $_GET['f']; ?></td>
               </tr>
 		</table>
 		
