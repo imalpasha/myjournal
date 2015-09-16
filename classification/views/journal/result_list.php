@@ -143,6 +143,8 @@
 <input type="hidden" id="d" name="d"/>
 <input type="hidden" id="f" name="f"/>
 <input type="hidden" id="did" name="did"/>
+<input type="hidden" id="pfid" name="formID"/>
+
 </form>
 
 <form id="downloadExcel" action="Excel/journal_list_excel.php">
@@ -151,6 +153,8 @@
 <input type="hidden" id="ed" name="d"/>
 <input type="hidden" id="ef" name="f"/>
 <input type="hidden" id="edid" name="did"/>
+<input type="hidden" id="efid" name="formID"/>
+
 </form>
 
 <?php
@@ -177,6 +181,7 @@ $('#btnExport').click(function() {
 		$('#s').val($("input[name=search]").val());
 		$('#y').val($("#year option:selected").text());
 		$('#f').val($("#form option:selected").text());
+		$('#pfid').val($("#form option:selected").val());
 		$('#d').val($("#discipline option:selected").text());
 		$('#did').val($("#discipline option:selected").val());
 		form.submit();
@@ -186,6 +191,7 @@ $('#btnExport').click(function() {
 		$('#es').val($("input[name=search]").val());
 		$('#ey').val($("#year option:selected").text());
 		$('#ef').val($("#form option:selected").text());
+		$('#efid').val($("#form option:selected").val());
 		$('#ed').val($("#discipline option:selected").text());
 		$('#edid').val($("#discipline option:selected").val());
 		form.submit();

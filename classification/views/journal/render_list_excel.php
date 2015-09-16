@@ -23,13 +23,15 @@ $objPHPExcel->getProperties()->setCreator("UM");
 $objPHPExcel->getProperties()->setTitle("e-PUBLICATION UM");
 $objPHPExcel->getProperties()->setSubject("Journal List With Classification");
 
-$i = 11;
+$i = 12;
 $O = 10;
 $index = 0;
 
 $objPHPExcel->setActiveSheetIndex(0);
 $objPHPExcel->setActiveSheetIndex(0)->mergeCells('B3:C3');
 $objPHPExcel->setActiveSheetIndex(0)->mergeCells('D10:G10');
+$objPHPExcel->setActiveSheetIndex(0)->mergeCells('B10:B11');
+$objPHPExcel->setActiveSheetIndex(0)->mergeCells('C10:C11');
 
 $objPHPExcel->getActiveSheet()->SetCellValue('B2', 'Journal With Classification');
 $objPHPExcel->getActiveSheet()->getStyle("B2:B2")->getFont()->setBold(true);
@@ -40,13 +42,16 @@ $objPHPExcel->getActiveSheet()->SetCellValue('B4', 'Year:');
 $objPHPExcel->getActiveSheet()->SetCellValue('B5', 'Dicipline:');
 $objPHPExcel->getActiveSheet()->SetCellValue('B6', 'Form Category:');
 $objPHPExcel->getActiveSheet()->SetCellValue('B7', 'Full Mark:');
-$objPHPExcel->getActiveSheet()->SetCellValue('B8', 'Search:');
 
 $objPHPExcel->getActiveSheet()->SetCellValue('C4', $_GET['y']);
 $objPHPExcel->getActiveSheet()->SetCellValue('C5', $_GET['d']);
 $objPHPExcel->getActiveSheet()->SetCellValue('C6', $_GET['f']);
 $objPHPExcel->getActiveSheet()->SetCellValue('C7', $fullMarks);
-$objPHPExcel->getActiveSheet()->SetCellValue('C8', $_GET['s']);
+
+if($_GET['s'] != ""){
+	$objPHPExcel->getActiveSheet()->SetCellValue('B8', 'Search:');
+	$objPHPExcel->getActiveSheet()->SetCellValue('C8', $_GET['s']);
+}
 
 $objPHPExcel->getActiveSheet()->SetCellValue('B10', 'No.');
 $objPHPExcel->getActiveSheet()->SetCellValue('C10', 'Journal Title');
@@ -59,14 +64,43 @@ $objPHPExcel->getActiveSheet()->SetCellValue('G11', '%');
 
 
 
+$c = $offset;
+
+// variables to keep number of journal have for each level
+$counts = [0, 0, 0, 0, 0];
+
+// to keep the threshold value of each level
+$classes = [90, 70, 30, 20, 10];
+
+// labels for each levels
+$levels = ['A1', 'A2', 'B1', 'B2', 'B5'];
+
+$curentLevel = '';
+$a = 0;
+
 foreach ($journals as $journal): 
-	$i++;
-	$index++;
 	
+	$c++;
+	$index++;
 	$percentage = round(($journal['totalMarks'] / $fullMarks) * 100, 2);
 
+	 for ($k = 0; $k < count($classes); $k++) {
+                                if ($percentage >= $classes[$k]) {
+                                    $counts[$k]++;
+                                    if ($curentLevel != $levels[$k]) {
+										
+										$objPHPExcel->setActiveSheetIndex(0)->mergeCells('B'.$i.':G'.$i);
+										$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i,'Tahap ' . $levels[$k]);
+                                        
+										$curentLevel = $levels[$k];
+                                    }
+                                    break;
+                                }
+                            }
 	
-	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i,$index);
+	$i++;
+	
+	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $c);
 	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $journal['name']);
 	$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $journal['compulsory']);
 	$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $journal['optional']);
@@ -81,7 +115,7 @@ endforeach;
 
 $objPHPExcel->getActiveSheet()->getStyle("B11:G11")->getFont()->setBold(true);
 $objPHPExcel->getActiveSheet()->getStyle("B10:G10")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("B5:B7")->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle("B4:B8")->getFont()->setBold(true);
 
 $objPHPExcel->getActiveSheet()->getStyle('E')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
 

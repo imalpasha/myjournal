@@ -173,39 +173,14 @@ class Journal extends BaseClass
 		$this->render('journal/edit_evaluation_form', $data);
 	}
 
-	/* IMAL - EDIT DUMMY VIEW */
-
-	function editJournal() {
-
-		// render view
-		$this->render('journal/detail');
-	}
 
 
-	/* IMAL - EXPORT */
 
-	/*function toPDF() {
-
-		// get parameters
-		 $search = isset($_GET['s']) ? $_GET['s'] : '';
-		 $form = isset($_GET['f']) ? $_GET['f'] : '';
-		 $year = isset($_GET['y']) ? $_GET['y'] : '';
-		 $discipline = isset($_GET['d']) ? $_GET['d'] : '';
-
-		// set data to be passed to view
-		$data['journals'] = $journals;
-		$data['forms'] = $this->formModel->getForms();
-		//print_r($data['journals']);
-		// render view
-		//$this->render('journal/render_list_pdf', $data);
-		$this->evaluatedJournalsActionPDF();
-	}*/
-	
-		function toPDF() {
+		function convertListJournal($var) {
 
 		// get parameters
 		$search = isset($_GET['s']) ? $_GET['s'] : '';
-		$form = isset($_GET['f']) ? $_GET['f'] : '';
+		//$form = isset($_GET['f']) ? $_GET['f'] : '';
 
 		$discipline = isset($_GET['did']) ? $_GET['did'] : '';
 		$page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -214,6 +189,11 @@ class Journal extends BaseClass
 		// get available forms
 		$forms = $this->formModel->getForms();
 		$form = $forms[0]['id'];
+
+		// check form parameter
+		if (isset($_GET['formID'])) {
+			$form = $_GET['formID'];
+		}
 
 		$year = date('Y');
 		// check year parameter
@@ -245,12 +225,15 @@ class Journal extends BaseClass
 		$data['forms'] = $forms;
 
 		// render view
-		//$this->render('journal/render_list_pdf', $data);
-		$this->render('journal/render_list_pdf', $data);
-		
+		if($var == "EXCEL")
+		{
+			$this->render('journal/render_list_excel', $data);
+		}else{
+			$this->render('journal/render_list_pdf', $data);
+		}
 	}
 
-	function toExcel() {
+	/*function toExcel() {
 
 		// get parameters
 		$search = isset($_GET['s']) ? $_GET['s'] : '';
@@ -295,14 +278,20 @@ class Journal extends BaseClass
 
 		//print_r($journals);
 		// render view
-		$this->render('journal/render_list_excel', $data);
-	}
+		
+	}*/
 	
-	function toPDFDetail() {
+	//$journal->convertDetail("PDF");
+	function convertDetail($var) {
 		
 		// list of dropdown forms
 		$forms = $this->formModel->getForms();
 		$form = $forms[0]['id'];
+	
+		// check form parameter
+		if (isset($_GET['fid']) && $_GET['fid'] != '') {
+			$form = $_GET['fid'];
+		}
 	
 		// fullmark based on form id
 		$fullMarks = $this->formModel->getTotalMarksForForm($form);
@@ -314,8 +303,7 @@ class Journal extends BaseClass
 		$data['fullMarks'] = $fullMarks;
 		
 		// render view
-		$excel = true;
-		if($excel){
+		if($var == "EXCEL"){
 			$this->render('journal/render_detail_excel',$data);		
 		}
 		else{

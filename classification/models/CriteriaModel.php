@@ -25,6 +25,8 @@ class CriteriaModel extends BaseModel
 		return $rows;
 	}
 
+	
+	
 	function getCriteria($id) {
 		$stmt3 = $this->db2->prepare("SELECT * FROM criteria WHERE id=?");
 		$stmt3->execute(array($id));
