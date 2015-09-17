@@ -33,8 +33,12 @@ $objPHPExcel->setActiveSheetIndex(0)->mergeCells('D10:G10');
 $objPHPExcel->setActiveSheetIndex(0)->mergeCells('B10:B11');
 $objPHPExcel->setActiveSheetIndex(0)->mergeCells('C10:C11');
 
+$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth('100');
+$objPHPExcel->getActiveSheet()->getStyle('C')->getAlignment()->setWrapText(true);
+
 $objPHPExcel->getActiveSheet()->SetCellValue('B2', 'Journal With Classification');
 $objPHPExcel->getActiveSheet()->getStyle("B2:B2")->getFont()->setBold(true);
+
 
 /*FILTER FIELD*/
 
@@ -43,10 +47,10 @@ $objPHPExcel->getActiveSheet()->SetCellValue('B5', 'Dicipline:');
 $objPHPExcel->getActiveSheet()->SetCellValue('B6', 'Form Category:');
 $objPHPExcel->getActiveSheet()->SetCellValue('B7', 'Full Mark:');
 
-$objPHPExcel->getActiveSheet()->SetCellValue('C4', $_GET['y']);
+$objPHPExcel->getActiveSheet()->SetCellValue('C4', $_GET['y']." ");
 $objPHPExcel->getActiveSheet()->SetCellValue('C5', $_GET['d']);
 $objPHPExcel->getActiveSheet()->SetCellValue('C6', $_GET['f']);
-$objPHPExcel->getActiveSheet()->SetCellValue('C7', $fullMarks);
+$objPHPExcel->getActiveSheet()->SetCellValue('C7', $fullMarks." ");
 
 if($_GET['s'] != ""){
 	$objPHPExcel->getActiveSheet()->SetCellValue('B8', 'Search:');
@@ -101,7 +105,7 @@ foreach ($journals as $journal):
 	$i++;
 	
 	$objPHPExcel->getActiveSheet()->SetCellValue('B'.$i, $c);
-	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, $journal['name']);
+	$objPHPExcel->getActiveSheet()->SetCellValue('C'.$i, "xasxasdas dasdsajhdkjsahdasjkdhkjsahdsa kdsa dsahdsakjdhsakjdhsakjdhaskjdh asjd askjd asjd askj dhsakjdhaksjdh askjdaskjdhaskjdh askj dasdjaskd hasdassada asdasdsa");
 	$objPHPExcel->getActiveSheet()->SetCellValue('D'.$i, $journal['compulsory']);
 	$objPHPExcel->getActiveSheet()->SetCellValue('E'.$i, $journal['optional']);
 	$objPHPExcel->getActiveSheet()->SetCellValue('F'.$i, $journal['totalMarks']);
@@ -134,6 +138,8 @@ foreach(range('B','E') as $columnID) {
 $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)
          ->setAutoSize(true);
 }
+$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(false);
+
 
 $objPHPExcel->getActiveSheet()->getStyle("D10:D10")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 $objPHPExcel->getActiveSheet()->getStyle("D11:G11")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
